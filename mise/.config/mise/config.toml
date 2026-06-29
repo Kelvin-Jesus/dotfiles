@@ -1,5 +1,10 @@
 [tools]
+bun = "latest"
 go = "latest"
 node = "latest"
+"npm:yarn" = "latest"
 python = "latest"
 rust = "latest"
+
+[settings]
+idiomatic_version_file_enable_tools = ["node"]

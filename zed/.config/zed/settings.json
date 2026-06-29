@@ -42,17 +42,167 @@
     "vim_mode": true,
     "ui_font_size": 16,
     "buffer_font_size": 18,
-    "buffer_font_family": "FiraCode",
+    "buffer_font_weight": 400,
+    "buffer_font_family": "FiraCode Nerd Font Mono",
     "theme": {
         "mode": "system",
         "light": "One Light",
-        "dark": "Catppuccin Mocha",
+        "dark": "Catppuccin Espresso (Blur)",
+    },
+    "theme_overrides": {
+        "Catppuccin Espresso (Blur)": {
+            "background.appearance": "opaque",
+            "background": "#11111b",
+            "editor.background": "#11111b",
+            "panel.background": "#11111b",
+            "surface.background": "#181825",
+            "elevated_surface.background": "#1e1e2e",
+            "title_bar.background": "#11111b",
+            "toolbar.background": "#11111b",
+            "tab_bar.background": "#11111b",
+            "status_bar.background": "#11111b",
+        },
+    },
+    "languages": {
+        "TypeScript": {
+            "language_servers": [
+                "tsgo",
+                "!vtsls",
+                "oxc",
+                "!typescript-language-server",
+            ],
+            "show_edit_predictions": true,
+            "code_actions_on_format": {
+                "source.fixAll.eslint": true,
+            },
+            "colorize_brackets": true,
+        },
+        "TSX": {
+            "language_servers": [
+                "tsgo",
+                "!vtsls",
+                "oxc",
+                "!typescript-language-server",
+            ],
+            "code_actions_on_format": {
+                "source.fixAll.eslint": true,
+            },
+            "colorize_brackets": true,
+        },
+        "JavaScript": {
+            "language_servers": [
+                "tsgo",
+                "!vtsls",
+                "oxc",
+                "!typescript-language-server",
+            ],
+            "code_actions_on_format": {
+                "source.fixAll.eslint": true,
+            },
+            "colorize_brackets": true,
+        },
+        "JSON": {
+            "colorize_brackets": true,
+        },
+        "SQL": {
+            "colorize_brackets": true,
+        },
+    },
+    "lsp": {
+        "biome": {
+            "settings": {
+                "require_config_file": true,
+            },
+        },
+        "oxc": {
+            "initialization_options": {
+                "options": {
+                    "run": "onType",
+                    "typeAware": true,
+                },
+            },
+        },
     },
     "tab_size": 4,
     "soft_wrap": "editor_width",
-    "languages": {
-        "JavaScript": {
-            "format_on_save": "off",
+    "telemetry": {
+        "diagnostics": false,
+        "metrics": false,
+    },
+    "file_scan_exclusions": [
+        "**/.git",
+        "**/.svn",
+        "**/.hg",
+        "**/.jj",
+        "**/.sl",
+        "**/.repo",
+        "**/CVS",
+        "**/.DS_Store",
+        "**/Thumbs.db",
+        "**/node_modules",
+        "**/.pnpm",
+        "**/dist",
+        "**/build",
+        "**/.next",
+        "**/.nuxt",
+        "**/.turbo",
+        "**/.cache",
+        "**/.parcel-cache",
+        "**/.venv",
+        "**/venv",
+        "**/__pycache__",
+        "**/.pytest_cache",
+        "**/.mypy_cache",
+        "**/target",
+        "**/.cargo",
+        "**/vendor",
+        "**/.bundle",
+        "**/coverage",
+        "**/.nyc_output",
+        "**/*.log",
+    ],
+    "cursor_shape": "bar",
+    "buffer_line_height": {
+        "custom": 1.6,
+    },
+    "tab_bar": {
+        "show": true,
+        "show_tab_bar_buttons": false,
+        "show_nav_history_buttons": false,
+    },
+    "preview_tabs": {
+        "enabled": false,
+    },
+    "max_tabs": 7,
+
+    "title_bar": {
+        "show_branch_name": true,
+        "show_branch_status_icon": true,
+    },
+    "toolbar": {
+        "breadcrumbs": false,
+        "quick_actions": false,
+        "selections_menu": false,
+    },
+    "show_call_status_icon": false,
+    "vertical_scroll_margin": 5,
+    "hover_popover_delay": 150,
+    "diagnostics": {
+        "inline": {
+            "enabled": true,
+            "max_severity": "warning",
+            "padding": 4,
+            "min_column": 0,
         },
+    },
+    "inlay_hints": {
+        "enabled": true,
+        "show_type_hints": true,
+        "show_parameter_hints": true,
+        "show_other_hints": true,
+        "show_background": false,
+        "edit_debounce_ms": 700,
+        "scroll_debounce_ms": 50,
+        "toggle_on_modifiers_press": null,
     },
 }

@@ -120,3 +120,9 @@ export PATH="/Users/kajota/.antigravity/antigravity/bin:$PATH"
 
 # Added by Antigravity CLI installer
 export PATH="/Users/kajota/.local/bin:$PATH"
+
+# mimocode
+export PATH=/Users/kajota/.mimocode/bin:$PATH
+
+# ai-skills folder
+export skills=/Users/kajota/Dev/ai-skills/
