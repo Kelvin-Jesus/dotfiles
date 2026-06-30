@@ -70,6 +70,7 @@ for settings_script in \
   trackpad \
   updates \
   power \
+  network \
   apps; do
   run_script "$DOTFILES_ROOT/scripts/macos/settings/$settings_script.sh"
 done
