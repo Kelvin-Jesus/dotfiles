@@ -12,7 +12,6 @@ SKIP_RUNTIMES=0
 SKIP_EDITORS=0
 SKIP_SETTINGS=0
 WITH_OPTIONAL_APPS=0
-WITH_UBLOCKDNS=0
 
 usage() {
   cat <<'EOF'
@@ -27,7 +26,6 @@ Options:
   --skip-editors            Do not restore LazyVim plugins
   --skip-system-settings    Do not apply macOS/Arch system settings
   --with-optional-apps      Install pinned SideScreen and SpotiFLAC releases
-  --with-ublockdns          Install uBlockDNS using UBLOCKDNS_PROFILE_ID
   -h, --help                Show this help
 EOF
 }
@@ -57,9 +55,6 @@ while [[ $# -gt 0 ]]; do
       ;;
     --with-optional-apps)
       WITH_OPTIONAL_APPS=1
-      ;;
-    --with-ublockdns)
-      WITH_UBLOCKDNS=1
       ;;
     -h | --help)
       usage
@@ -126,10 +121,6 @@ if [[ "$SKIP_SETTINGS" -eq 0 ]]; then
       run_script "$DOTFILES_ROOT/scripts/arch/services.sh"
       ;;
   esac
-fi
-
-if [[ "$WITH_UBLOCKDNS" -eq 1 ]]; then
-  run_script "$DOTFILES_ROOT/scripts/install-ublockdns.sh"
 fi
 
 run_script "$DOTFILES_ROOT/scripts/doctor.sh" --soft

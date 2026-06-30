@@ -57,6 +57,25 @@ capture_to_allow_failure "$backup_dir/power-settings.txt" /usr/bin/pmset -g cust
 capture_to_allow_failure "$backup_dir/finder-report.txt" /usr/bin/defaults read com.apple.finder
 capture_to_allow_failure "$backup_dir/dock-report.txt" /usr/bin/defaults read com.apple.dock
 
+network_backup="$backup_dir/network-dns.tsv"
+if [[ "$DRY_RUN" -eq 1 ]]; then
+  log "\$ save DNS servers by network service to $(printf '%q' "$network_backup")"
+else
+  : >"$network_backup"
+  network_services="$(/usr/sbin/networksetup -listallnetworkservices | tail -n +2)"
+  while IFS= read -r service; do
+    [[ -n "$service" ]] || continue
+    [[ "$service" == \** ]] && continue
+    dns_output="$(/usr/sbin/networksetup -getdnsservers "$service")"
+    if [[ "$dns_output" == "There aren't any DNS Servers set on "* ]]; then
+      dns_servers="Empty"
+    else
+      dns_servers="${dns_output//$'\n'/ }"
+    fi
+    printf '%s\t%s\n' "$service" "$dns_servers" >>"$network_backup"
+  done <<<"$network_services"
+fi
+
 shared_dir="$HOME/Library/Application Support/com.apple.sharedfilelist"
 if [[ -d "$shared_dir" ]]; then
   while IFS= read -r sidebar_file; do

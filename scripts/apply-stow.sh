@@ -27,8 +27,6 @@ macos_packages=(
 
 legacy_paths=(
   "$TARGET_HOME/.config/btop"
-  "$TARGET_HOME/.config/gh"
-  "$TARGET_HOME/.config/gh/config.yml"
   "$TARGET_HOME/.config/ghostty"
   "$TARGET_HOME/.config/mise"
   "$TARGET_HOME/.config/nvim"
@@ -47,7 +45,7 @@ cleanup_legacy_link() {
   [[ -L "$path" ]] || return 0
   target="$(readlink "$path")"
   case "$target" in
-    *dotfiles/btop/* | *dotfiles/gh/* | *dotfiles/ghostty/* | *dotfiles/git/* | \
+    *dotfiles/btop/* | *dotfiles/ghostty/* | *dotfiles/git/* | \
       *dotfiles/mise/* | *dotfiles/nvim/* | *dotfiles/starship/* | *dotfiles/tmux/* | \
       *dotfiles/zed/* | *dotfiles/zellij/* | *dotfiles/zsh/*)
       run rm "$path"
@@ -57,22 +55,7 @@ cleanup_legacy_link() {
 }
 
 preserve_legacy_mutable_data() {
-  local gh_dir hosts_temp legacy_zed
-  gh_dir="$TARGET_HOME/.config/gh"
-
-  if [[ -L "$gh_dir" && -f "$gh_dir/hosts.yml" ]]; then
-    if [[ "$DRY_RUN" -eq 1 ]]; then
-      log "Preserve $gh_dir/hosts.yml as a local 0600 file"
-    else
-      hosts_temp="$(mktemp)"
-      cp "$gh_dir/hosts.yml" "$hosts_temp"
-      rm "$gh_dir"
-      mkdir -p "$gh_dir"
-      install -m 0600 "$hosts_temp" "$gh_dir/hosts.yml"
-      rm "$hosts_temp"
-    fi
-  fi
-
+  local legacy_zed
   legacy_zed="$DOTFILES_ROOT/zed/.config/zed"
   if [[ -L "$TARGET_HOME/.config/zed" && -d "$legacy_zed" ]]; then
     if [[ "$DRY_RUN" -eq 1 ]]; then

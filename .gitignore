@@ -10,7 +10,6 @@
 *.swp
 *.tmp
 
-**/.config/gh/hosts.yml
 **/.config/tmux/plugins/
 **/.config/zed/conversations/
 **/.config/zed/embeddings/

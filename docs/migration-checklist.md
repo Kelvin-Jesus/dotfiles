@@ -54,6 +54,31 @@ Abra um terminal novo e confirme:
 
 Execute o instalador pela segunda vez para confirmar idempotência.
 
+## Recuperação dos dados que não pertencem aos dotfiles
+
+Antes de apagar ou entregar a máquina antiga, confirme cada item:
+
+- [ ] **Projetos:** todos os repositórios têm remoto, `git status` revisado e
+      commits enviados; projetos sem Git possuem backup externo.
+- [ ] **SSH/GPG:** chaves necessárias estão em backup criptografado; permissões
+      e autenticação foram testadas no Mac novo.
+- [ ] **KeePassXC:** banco e eventual key file foram copiados separadamente e o
+      banco abre no Mac novo.
+- [ ] **Obsidian:** vault, anexos, plugins e snippets foram sincronizados e uma
+      nota foi editada para testar escrita.
+- [ ] **Anki:** coleção e mídia foram sincronizadas ou exportadas e abertas no
+      Mac novo.
+- [ ] **Zen:** perfil, favoritos, extensões e códigos de recuperação foram
+      restaurados.
+- [ ] **Syncthing:** o Mac novo foi pareado como novo dispositivo e todas as
+      pastas mostram estado sincronizado.
+- [ ] **OrbStack:** máquinas, imagens, volumes e dados persistentes necessários
+      foram exportados e validados separadamente.
+- [ ] **Wallpapers:** a coleção está no Drive e
+      `WALLPAPER_DIR` aponta para a pasta sincronizada.
+- [ ] **Apple Account:** iCloud, Find My Mac, FileVault e a chave de recuperação
+      foram revisados manualmente.
+
 ## Remoção opcional de aplicativos Apple
 
 Primeiro revise o dry-run:

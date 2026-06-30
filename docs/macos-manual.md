@@ -36,7 +36,6 @@ manualmente esta ordem em Favoritos:
 
 ## Aplicativos e dados
 
-- Execute `gh auth login`.
 - Reassocie o dispositivo Syncthing; a identidade do dispositivo não pertence
   aos dotfiles.
 - Restaure a vault do Obsidian, coleção do Anki e banco do KeePassXC a partir

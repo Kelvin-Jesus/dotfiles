@@ -48,6 +48,33 @@ check_command() {
   fi
 }
 
+check_managed_config() {
+  local config_path
+  config_path="$1"
+  if [[ -L "$config_path" && -e "$config_path" ]]; then
+    ok "managed config: $config_path"
+  elif [[ -L "$config_path" ]]; then
+    missing "broken config link: $config_path"
+  elif [[ -e "$config_path" ]]; then
+    notice "config is not managed by Stow: $config_path"
+  else
+    missing "config missing: $config_path"
+  fi
+}
+
+check_default() {
+  local domain key expected actual
+  domain="$1"
+  key="$2"
+  expected="$3"
+  actual="$(/usr/bin/defaults read "$domain" "$key" 2>/dev/null || true)"
+  if [[ "$actual" == "$expected" ]]; then
+    ok "preference: $domain $key=$expected"
+  else
+    notice "preference differs: $domain $key=${actual:-unset} (expected $expected)"
+  fi
+}
+
 commands=(
   zsh
   starship
@@ -83,11 +110,7 @@ for config_path in \
   "$HOME/.config/nvim/init.lua" \
   "$HOME/.config/tmux/tmux.conf" \
   "$HOME/.config/zed/settings.json"; do
-  if [[ -e "$config_path" || -L "$config_path" ]]; then
-    ok "config: $config_path"
-  else
-    missing "config missing: $config_path"
-  fi
+  check_managed_config "$config_path"
 done
 
 platform="$(detect_platform)"
@@ -134,6 +157,58 @@ if [[ "$platform" == "macos" ]]; then
     fi
   done
 
+  check_default NSGlobalDomain AppleInterfaceStyle Dark
+  check_default NSGlobalDomain AppleIconAppearanceTheme RegularDark
+  check_default com.apple.finder ShowSidebar 1
+  check_default com.apple.finder ShowPathbar 1
+  check_default com.apple.finder FXPreferredViewStyle Nlsv
+
+  developer_icon="$HOME/Developer/Icon"$'\r'
+  if [[ -e "$developer_icon" ]] \
+    && /usr/bin/xattr -p com.apple.ResourceFork "$developer_icon" >/dev/null 2>&1; then
+    ok "Developer folder icon is configured"
+  else
+    notice "Developer folder icon is not configured"
+  fi
+
+  if /bin/launchctl print "gui/$UID/com.dotfiles.caps-to-escape" >/dev/null 2>&1; then
+    ok "Caps Lock to Escape LaunchAgent is loaded"
+  else
+    notice "Caps Lock to Escape LaunchAgent is not loaded"
+  fi
+
+  if command -v defaultbrowser >/dev/null 2>&1; then
+    default_browser="$(defaultbrowser 2>/dev/null || true)"
+    default_browser_lower="$(printf '%s' "$default_browser" | tr '[:upper:]' '[:lower:]')"
+    if [[ "$default_browser_lower" == *zen* ]]; then
+      ok "default browser: Zen"
+    else
+      notice "default browser is not Zen: ${default_browser:-unknown}"
+    fi
+  else
+    notice "defaultbrowser is unavailable; cannot verify Zen"
+  fi
+
+  expected_dns="1.1.1.1 1.0.0.1"
+  network_services="$(/usr/sbin/networksetup -listallnetworkservices | tail -n +2)"
+  while IFS= read -r service; do
+    [[ -n "$service" ]] || continue
+    [[ "$service" == \** ]] && continue
+    dns_output="$(/usr/sbin/networksetup -getdnsservers "$service")"
+    actual_dns="${dns_output//$'\n'/ }"
+    if [[ "$actual_dns" == "$expected_dns" ]]; then
+      ok "DNS: $service uses Cloudflare"
+    else
+      notice "DNS differs for $service: $actual_dns"
+    fi
+  done <<<"$network_services"
+
+  if docker info >/dev/null 2>&1; then
+    ok "Docker daemon is available"
+  else
+    notice "Docker daemon is unavailable; start OrbStack when needed"
+  fi
+
   if command -v brew >/dev/null 2>&1 \
     && brew bundle check --file="$DOTFILES_ROOT/packages/macos/Brewfile" >/dev/null 2>&1; then
     ok "Homebrew bundle is satisfied"
@@ -141,6 +216,7 @@ if [[ "$platform" == "macos" ]]; then
     notice "Homebrew bundle has missing or changed entries"
   fi
 else
+  check_command syncthing
   if systemctl is-enabled keyd.service >/dev/null 2>&1; then
     ok "keyd service enabled"
   else
@@ -152,6 +228,12 @@ else
     notice "Docker service is not enabled"
   fi
 fi
+
+while IFS= read -r -d '' managed_link; do
+  if [[ ! -e "$managed_link" ]]; then
+    missing "broken symlink: $managed_link -> $(readlink "$managed_link")"
+  fi
+done < <(find "$HOME/.config" -type l -print0 2>/dev/null)
 
 printf '\nDoctor: %d failure(s), %d warning(s)\n' "$failures" "$warnings"
 if [[ "$failures" -gt 0 && "$SOFT" -eq 0 ]]; then

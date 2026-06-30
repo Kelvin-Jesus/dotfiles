@@ -23,6 +23,7 @@ go-task
 jq
 fastfetch
 lazygit
+syncthing
 
 # Development
 docker

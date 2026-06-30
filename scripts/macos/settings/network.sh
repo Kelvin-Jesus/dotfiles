@@ -7,7 +7,7 @@ DOTFILES_ROOT="${DOTFILES_ROOT:-$(cd "$(dirname "${BASH_SOURCE[0]}")/../../.." &
 source "$DOTFILES_ROOT/scripts/lib/common.sh"
 require_macos
 
-dns_servers=(1.1.1.1 1.0.0.1 8.8.8.8 8.8.4.4)
+dns_servers=(1.1.1.1 1.0.0.1)
 
 if [[ "${1:-}" == "--automatic" ]]; then
   dns_servers=(Empty)
