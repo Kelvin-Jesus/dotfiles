@@ -206,8 +206,16 @@ esac
 clone_or_update
 
 if [[ "$DRY_RUN" -eq 1 ]] && [[ ! -x "$DOTFILES_DIR/install.sh" ]]; then
-  log "\$ $DOTFILES_DIR/install.sh $(quote_command "${FORWARD_ARGS[@]}")"
+  if ((${#FORWARD_ARGS[@]})); then
+    log "\$ $DOTFILES_DIR/install.sh $(quote_command "${FORWARD_ARGS[@]}")"
+  else
+    log "\$ $DOTFILES_DIR/install.sh"
+  fi
   exit 0
 fi
 
-exec "$DOTFILES_DIR/install.sh" "${FORWARD_ARGS[@]}"
+if ((${#FORWARD_ARGS[@]})); then
+  exec "$DOTFILES_DIR/install.sh" "${FORWARD_ARGS[@]}"
+else
+  exec "$DOTFILES_DIR/install.sh"
+fi
