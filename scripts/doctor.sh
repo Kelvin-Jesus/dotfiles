@@ -173,10 +173,9 @@ if [[ "$platform" == "macos" ]]; then
   else
     notice "disable Reduce Transparency manually for a transparent menu bar"
   fi
-  for menu_item in Battery KeyboardBrightness Sound WiFi BentoBox; do
-    check_default com.apple.controlcenter "NSStatusItem Visible $menu_item" 1
-  done
+  check_default com.apple.controlcenter AutoHideMenuBarOption 1
   check_default com.apple.menuextra.clock DateFormat "HH:mm"
+  check_default com.apple.menuextra.clock ShowDayOfWeek 0
   check_default com.apple.menuextra.clock ShowSeconds 0
   check_default com.apple.finder ShowSidebar 1
   check_default com.apple.finder ShowPathbar 1

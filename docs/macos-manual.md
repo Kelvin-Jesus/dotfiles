@@ -37,6 +37,20 @@ manualmente esta ordem em Favoritos:
 5. Documents
 6. Recents
 
+## Barra de menus
+
+No macOS 26, a lista de módulos da barra é armazenada em um estado interno do
+Control Center que não possui interface estável por `defaults`. Confirme uma
+vez em **Ajustes do Sistema → Barra de Menus**:
+
+1. Bateria;
+2. Iluminação do teclado;
+3. Som;
+4. Wi-Fi;
+5. Central de Controle.
+
+Auto-ocultar e o relógio sem data continuam automatizados.
+
 ## Aplicativos e dados
 
 - Reassocie o dispositivo Syncthing; a identidade do dispositivo não pertence
