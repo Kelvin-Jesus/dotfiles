@@ -58,6 +58,7 @@ commands=(
   rg
   fd
   gping
+  hyperfine
   btop
   tmux
   task

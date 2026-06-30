@@ -18,6 +18,7 @@ shellcheck
 shfmt
 fd
 gping
+hyperfine
 btop
 tmux
 go-task
