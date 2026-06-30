@@ -67,3 +67,4 @@ cask "font-iosevka-nerd-font"
 # Fonts used by Obsidian themes and notes.
 cask "font-inter"
 cask "font-literata"
+cask "font-newsreader"
