@@ -121,6 +121,7 @@ if [[ "$SKIP_SETTINGS" -eq 0 ]]; then
       run_script "$DOTFILES_ROOT/scripts/arch/services.sh"
       ;;
   esac
+  run_script "$DOTFILES_ROOT/scripts/set-wallpaper.sh"
 fi
 
 run_script "$DOTFILES_ROOT/scripts/doctor.sh" --soft

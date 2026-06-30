@@ -74,8 +74,8 @@ Antes de apagar ou entregar a máquina antiga, confirme cada item:
       pastas mostram estado sincronizado.
 - [ ] **OrbStack:** máquinas, imagens, volumes e dados persistentes necessários
       foram exportados e validados separadamente.
-- [ ] **Wallpapers:** a coleção está no Drive e
-      `WALLPAPER_DIR` aponta para a pasta sincronizada.
+- [ ] **Wallpapers:** a coleção está no Drive e sincronizada em
+      `~/Documents/wallpapers`.
 - [ ] **Apple Account:** iCloud, Find My Mac, FileVault e a chave de recuperação
       foram revisados manualmente.
 

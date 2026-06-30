@@ -45,11 +45,8 @@ manualmente esta ordem em Favoritos:
 
 ## Wallpapers
 
-Mantenha a coleção pesada no Drive. Depois da sincronização:
+O instalador procura wallpapers em `~/Documents/wallpapers` no macOS e no
+Arch. Mantenha a coleção pesada no Drive e sincronize-a para esse caminho.
+Quando a pasta estiver vazia, o wallpaper fallback dos dotfiles será usado.
 
-```sh
-export WALLPAPER_DIR="$HOME/Library/CloudStorage/SEU_DRIVE/Wallpapers"
-~/dotfiles/scripts/set-wallpaper.sh
-```
-
-Grave `WALLPAPER_DIR` em `~/.zshrc.local`, que não é versionado.
+`WALLPAPER_DIR` pode substituir o caminho padrão sem ser versionada.

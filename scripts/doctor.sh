@@ -114,6 +114,12 @@ for config_path in \
 done
 
 platform="$(detect_platform)"
+if [[ -d "$HOME/Documents/wallpapers" ]]; then
+  ok "wallpaper directory: $HOME/Documents/wallpapers"
+else
+  notice "wallpaper directory missing: $HOME/Documents/wallpapers"
+fi
+
 if [[ "$platform" == "macos" ]]; then
   apps=(
     "Anki.app"

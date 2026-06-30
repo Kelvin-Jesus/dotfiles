@@ -7,6 +7,7 @@ DOTFILES_ROOT="${DOTFILES_ROOT:-$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)
 source "$DOTFILES_ROOT/scripts/lib/common.sh"
 
 wallpaper=""
+wallpaper_dir="${WALLPAPER_DIR:-$HOME/Documents/wallpapers}"
 while [[ $# -gt 0 ]]; do
   case "$1" in
     --dry-run)
@@ -24,9 +25,11 @@ while [[ $# -gt 0 ]]; do
   shift
 done
 
-if [[ -z "$wallpaper" && -n "${WALLPAPER_DIR:-}" && -d "$WALLPAPER_DIR" ]]; then
+ensure_dir "$wallpaper_dir"
+
+if [[ -z "$wallpaper" && -d "$wallpaper_dir" ]]; then
   wallpaper="$(
-    find "$WALLPAPER_DIR" -maxdepth 1 -type f \
+    find "$wallpaper_dir" -maxdepth 1 -type f \
       \( -iname '*.jpg' -o -iname '*.jpeg' -o -iname '*.png' -o -iname '*.heic' \) \
       -print -quit
   )"
