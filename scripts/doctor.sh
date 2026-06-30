@@ -166,7 +166,13 @@ if [[ "$platform" == "macos" ]]; then
   check_default NSGlobalDomain AppleInterfaceStyle Dark
   check_default NSGlobalDomain AppleIconAppearanceTheme RegularDark
   check_default NSGlobalDomain _HIHideMenuBar 1
-  check_default com.apple.universalaccess reduceTransparency 0
+  reduce_transparency="$(/usr/bin/defaults read \
+    com.apple.universalaccess reduceTransparency 2>/dev/null || printf '0')"
+  if [[ "$reduce_transparency" == "0" ]]; then
+    ok "preference: Reduce Transparency is disabled"
+  else
+    notice "disable Reduce Transparency manually for a transparent menu bar"
+  fi
   check_default com.apple.finder ShowSidebar 1
   check_default com.apple.finder ShowPathbar 1
   check_default com.apple.finder FXPreferredViewStyle Nlsv

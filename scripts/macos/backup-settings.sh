@@ -43,7 +43,6 @@ domains=(
   com.apple.SoftwareUpdate
   com.apple.commerce
   com.apple.spaces
-  com.apple.universalaccess
   com.apple.WindowManager
   com.apple.AppleMultitouchTrackpad
   com.apple.driver.AppleBluetoothMultitouch.trackpad

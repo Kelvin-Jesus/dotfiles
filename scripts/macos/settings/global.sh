@@ -10,7 +10,6 @@ require_macos
 run /usr/bin/defaults write NSGlobalDomain AppleInterfaceStyle -string Dark
 run /usr/bin/defaults write NSGlobalDomain AppleIconAppearanceTheme -string RegularDark
 run /usr/bin/defaults write NSGlobalDomain _HIHideMenuBar -bool true
-run /usr/bin/defaults write com.apple.universalaccess reduceTransparency -bool false
 run /usr/bin/defaults write NSGlobalDomain AppleShowAllExtensions -bool true
 run /usr/bin/defaults write NSGlobalDomain AppleShowAllFiles -bool true
 run /usr/bin/defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false

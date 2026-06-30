@@ -13,6 +13,9 @@ O instalador não tenta contornar essas proteções.
 
 ## Permissões
 
+- Em **Acessibilidade → Tela**, mantenha **Reduzir transparência** desativado.
+  O domínio `com.apple.universalaccess` é protegido e não pode ser gravado de
+  forma confiável pelo instalador.
 - Conceda Full Disk Access ao terminal usado com `sbedit` se a automação dos
   Favoritos do Finder não conseguir ler `FavoriteItems.sfl4`.
 - Conceda Screen Recording ao SideScreen e ao RustDesk.
