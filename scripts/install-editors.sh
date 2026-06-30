@@ -30,7 +30,8 @@ run_nvim_checked() {
   rm -f "$output_file"
 }
 
-run_nvim_checked '+Lazy! sync' +qa
+run rm -rf "${XDG_CACHE_HOME:-$HOME/.cache}/nvim/luac"
+run_nvim_checked '+Lazy! restore' +qa
 run_nvim_checked '+MasonToolsInstallSync' +qa
 run_nvim_checked \
   '+lua assert(vim.g.colors_name == "catppuccin-mocha", "Catppuccin is not active")' \
@@ -38,4 +39,4 @@ run_nvim_checked \
   '+lua assert(require("lazy").stats().count > 0, "LazyVim did not load plugins")' \
   +qa
 
-log "LazyVim plugins and Mason tools synchronized"
+log "LazyVim plugins restored from the lockfile and Mason tools installed"

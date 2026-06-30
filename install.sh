@@ -23,7 +23,7 @@ Options:
   --skip-packages           Do not install packages or applications
   --skip-stow               Do not apply dotfile symlinks
   --skip-runtimes           Do not run mise install
-  --skip-editors            Do not synchronize LazyVim
+  --skip-editors            Do not restore LazyVim plugins
   --skip-system-settings    Do not apply macOS/Arch system settings
   --with-optional-apps      Install pinned SideScreen and SpotiFLAC releases
   -h, --help                Show this help

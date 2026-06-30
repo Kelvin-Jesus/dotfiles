@@ -104,6 +104,21 @@ cleanup_legacy_layout() {
   fi
 }
 
+cleanup_broken_managed_links() {
+  local path target
+  [[ -d "$TARGET_HOME/.config" ]] || return 0
+
+  while IFS= read -r -d '' path; do
+    [[ -e "$path" ]] && continue
+    target="$(readlink "$path")"
+    case "$target" in
+      *dotfiles/stow/*)
+        run rm "$path"
+        ;;
+    esac
+  done < <(find "$TARGET_HOME/.config" -type l -print0)
+}
+
 stow_packages() {
   local stow_dir package
   stow_dir="$1"
@@ -121,6 +136,7 @@ stow_packages() {
 
 ensure_dir "$TARGET_HOME"
 cleanup_legacy_layout
+cleanup_broken_managed_links
 stow_packages "$DOTFILES_ROOT/stow/common" "${common_packages[@]}"
 
 if [[ "$platform" == "macos" ]]; then

@@ -21,7 +21,15 @@ run_test() {
 }
 
 run_test
+
+stale_link="$temp_home/.config/nvim/lua/plugins/removed.lua"
+ln -s \
+  "$DOTFILES_ROOT/stow/common/nvim/.config/nvim/lua/plugins/removed.lua" \
+  "$stale_link"
+
 run_test
+
+[[ ! -L "$stale_link" ]] || die "stale managed symlink was not removed"
 
 expected=(
   "$temp_home/.zshrc"

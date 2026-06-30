@@ -47,6 +47,11 @@ if rg -n 'AstroNvim|astronvim' \
   exit 1
 fi
 
+if rg -n -F '+Lazy! sync' "$DOTFILES_ROOT/scripts/install-editors.sh"; then
+  printf 'Lazy sync mutates the versioned lockfile; use Lazy restore during bootstrap\n' >&2
+  exit 1
+fi
+
 if rg -n 'shader' "$DOTFILES_ROOT/stow/macos/ghostty"; then
   printf 'Ghostty shader reference found\n' >&2
   exit 1
