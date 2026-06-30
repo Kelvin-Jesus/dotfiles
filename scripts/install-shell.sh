@@ -32,6 +32,8 @@ if [[ ! -d "$tpm_dir/.git" ]]; then
 fi
 
 if [[ -x "$tpm_dir/bin/install_plugins" ]]; then
+  run tmux start-server \; set-environment -g \
+    TMUX_PLUGIN_MANAGER_PATH "$HOME/.tmux/plugins/"
   run "$tpm_dir/bin/install_plugins"
 elif [[ "$DRY_RUN" -eq 1 ]]; then
   log "\$ $tpm_dir/bin/install_plugins"
