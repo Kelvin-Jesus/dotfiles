@@ -27,7 +27,7 @@ zsh -n \
   "$DOTFILES_ROOT/stow/macos/macos/Library/LaunchAgents/com.dotfiles.caps-to-escape.plist"
 
 "$DOTFILES_ROOT/scripts/test-stow.sh"
-"$DOTFILES_ROOT/install.sh" \
+/bin/bash "$DOTFILES_ROOT/install.sh" \
   --dry-run \
   --skip-packages \
   --skip-runtimes \

@@ -90,7 +90,7 @@ if [[ "$SKIP_PACKAGES" -eq 0 ]]; then
       if [[ "$DRY_RUN" -eq 1 ]] || brew help trust >/dev/null 2>&1; then
         run brew trust --formula go-task/tap/go-task
       fi
-      run brew bundle --file="$DOTFILES_ROOT/packages/macos/Brewfile" --no-lock
+      run brew bundle install --file="$DOTFILES_ROOT/packages/macos/Brewfile"
       run_script "$DOTFILES_ROOT/scripts/macos/install-release-apps.sh" open-design
       if [[ "$WITH_OPTIONAL_APPS" -eq 1 ]]; then
         run_script "$DOTFILES_ROOT/scripts/macos/install-release-apps.sh" sidescreen spotiflac
@@ -119,11 +119,11 @@ fi
 if [[ "$SKIP_SETTINGS" -eq 0 ]]; then
   case "$platform" in
     macos)
-      macos_args=()
       if [[ "$WITH_LOGIN_ITEMS" -eq 1 ]]; then
-        macos_args+=(--with-login-items)
+        run_script "$DOTFILES_ROOT/scripts/macos/apply.sh" --with-login-items
+      else
+        run_script "$DOTFILES_ROOT/scripts/macos/apply.sh"
       fi
-      run_script "$DOTFILES_ROOT/scripts/macos/apply.sh" "${macos_args[@]}"
       ;;
     arch)
       run_script "$DOTFILES_ROOT/scripts/arch/caps-to-escape.sh"
