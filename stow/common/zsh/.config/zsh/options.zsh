@@ -24,6 +24,7 @@ setopt prompt_subst
 setopt pushd_ignore_dups
 setopt pushd_minus
 setopt share_history
+setopt typeset_silent
 
 # Keep word navigation consistent across macOS and Linux terminals.
 bindkey '^[b' backward-word
