@@ -7,9 +7,9 @@ font-size = 24
 # cursor-style = block
 # cursor-style-blink = true
 
-background-opacity = 1
+background-opacity = 0.95
 background-blur = true
-background = #000000
+background = #1a1b27
 macos-option-as-alt = true
 
 auto-update-channel = stable
