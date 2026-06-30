@@ -125,9 +125,11 @@ if [[ "$platform" == "macos" ]]; then
   done
 
   fonts=(
-    "FiraCode*Nerd*Font*"
+    "FiraCodeNerdFontMono-Retina.ttf"
     "JetBrainsMono*Nerd*Font*"
     "Iosevka*Nerd*Font*"
+    "Inter*"
+    "Literata*"
   )
   for font_pattern in "${fonts[@]}"; do
     if find "$HOME/Library/Fonts" /Library/Fonts -maxdepth 1 -iname "$font_pattern" \
