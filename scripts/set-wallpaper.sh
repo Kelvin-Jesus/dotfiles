@@ -32,7 +32,7 @@ if [[ -z "$wallpaper" && -n "${WALLPAPER_DIR:-}" && -d "$WALLPAPER_DIR" ]]; then
   )"
 fi
 
-wallpaper="${wallpaper:-$DOTFILES_ROOT/assets/wallpaper-fallback.svg}"
+wallpaper="${wallpaper:-$DOTFILES_ROOT/assets/wallpaper-fallback.png}"
 [[ -f "$wallpaper" ]] || die "wallpaper not found: $wallpaper"
 
 case "$(detect_platform)" in
