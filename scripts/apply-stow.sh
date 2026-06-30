@@ -11,7 +11,6 @@ platform="$(detect_platform)"
 
 common_packages=(
   btop
-  gh
   git
   mise
   nvim
@@ -29,6 +28,7 @@ macos_packages=(
 legacy_paths=(
   "$TARGET_HOME/.config/btop"
   "$TARGET_HOME/.config/gh"
+  "$TARGET_HOME/.config/gh/config.yml"
   "$TARGET_HOME/.config/ghostty"
   "$TARGET_HOME/.config/mise"
   "$TARGET_HOME/.config/nvim"

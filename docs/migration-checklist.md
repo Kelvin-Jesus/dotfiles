@@ -32,12 +32,6 @@ Para instalar também SideScreen e SpotiFLAC:
 ~/dotfiles/install.sh --with-optional-apps
 ```
 
-Para configurar os login items:
-
-```sh
-~/dotfiles/install.sh --skip-packages --skip-runtimes --skip-editors --with-login-items
-```
-
 ## Verificação
 
 ```sh

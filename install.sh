@@ -12,7 +12,6 @@ SKIP_RUNTIMES=0
 SKIP_EDITORS=0
 SKIP_SETTINGS=0
 WITH_OPTIONAL_APPS=0
-WITH_LOGIN_ITEMS=0
 
 usage() {
   cat <<'EOF'
@@ -27,7 +26,6 @@ Options:
   --skip-editors            Do not synchronize LazyVim
   --skip-system-settings    Do not apply macOS/Arch system settings
   --with-optional-apps      Install pinned SideScreen and SpotiFLAC releases
-  --with-login-items        Add LocalSend and Syncthing as macOS login items
   -h, --help                Show this help
 EOF
 }
@@ -57,9 +55,6 @@ while [[ $# -gt 0 ]]; do
       ;;
     --with-optional-apps)
       WITH_OPTIONAL_APPS=1
-      ;;
-    --with-login-items)
-      WITH_LOGIN_ITEMS=1
       ;;
     -h | --help)
       usage
@@ -119,11 +114,7 @@ fi
 if [[ "$SKIP_SETTINGS" -eq 0 ]]; then
   case "$platform" in
     macos)
-      if [[ "$WITH_LOGIN_ITEMS" -eq 1 ]]; then
-        run_script "$DOTFILES_ROOT/scripts/macos/apply.sh" --with-login-items
-      else
-        run_script "$DOTFILES_ROOT/scripts/macos/apply.sh"
-      fi
+      run_script "$DOTFILES_ROOT/scripts/macos/apply.sh"
       ;;
     arch)
       run_script "$DOTFILES_ROOT/scripts/arch/caps-to-escape.sh"

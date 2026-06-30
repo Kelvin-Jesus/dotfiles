@@ -66,7 +66,6 @@ commands=(
   fastfetch
   docker
   git
-  gh
   mise
   nvim
   stow
@@ -90,12 +89,6 @@ for config_path in \
     missing "config missing: $config_path"
   fi
 done
-
-if [[ -f "$HOME/.config/gh/hosts.yml" && ! -L "$HOME/.config/gh/hosts.yml" ]]; then
-  ok "GitHub credentials are local and not symlinked"
-else
-  notice "run 'gh auth login'; hosts.yml must remain outside the repository"
-fi
 
 platform="$(detect_platform)"
 if [[ "$platform" == "macos" ]]; then
