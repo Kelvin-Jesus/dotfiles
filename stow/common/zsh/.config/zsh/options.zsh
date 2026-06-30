@@ -24,3 +24,9 @@ setopt prompt_subst
 setopt pushd_ignore_dups
 setopt pushd_minus
 setopt share_history
+
+# Keep word navigation consistent across macOS and Linux terminals.
+bindkey '^[b' backward-word
+bindkey '^[f' forward-word
+bindkey '^[[1;3D' backward-word
+bindkey '^[[1;3C' forward-word
