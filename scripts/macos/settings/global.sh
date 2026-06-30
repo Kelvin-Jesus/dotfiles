@@ -8,6 +8,7 @@ source "$DOTFILES_ROOT/scripts/lib/common.sh"
 require_macos
 
 run /usr/bin/defaults write NSGlobalDomain AppleInterfaceStyle -string Dark
+run /usr/bin/defaults write NSGlobalDomain AppleIconAppearanceTheme -string RegularDark
 run /usr/bin/defaults write NSGlobalDomain AppleShowAllExtensions -bool true
 run /usr/bin/defaults write NSGlobalDomain AppleShowAllFiles -bool true
 run /usr/bin/defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false

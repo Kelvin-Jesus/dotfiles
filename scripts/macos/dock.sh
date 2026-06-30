@@ -38,6 +38,7 @@ run /usr/bin/defaults write com.apple.dock minimize-to-application -bool true
 run /usr/bin/defaults write com.apple.dock orientation -string bottom
 
 ensure_dir "$HOME/Developer"
+run_script "$DOTFILES_ROOT/scripts/macos/developer-folder-icon.sh"
 run dockutil --remove all --no-restart
 
 if [[ -d /System/Applications/Apps.app || "$DRY_RUN" -eq 1 ]]; then
@@ -55,4 +56,5 @@ run dockutil \
   --section others \
   --no-restart
 
+run_allow_failure /usr/bin/killall Finder
 run_allow_failure /usr/bin/killall Dock
