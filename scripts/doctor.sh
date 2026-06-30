@@ -159,6 +159,7 @@ if [[ "$platform" == "macos" ]]; then
 
   check_default NSGlobalDomain AppleInterfaceStyle Dark
   check_default NSGlobalDomain AppleIconAppearanceTheme RegularDark
+  check_default com.apple.universalaccess reduceTransparency 1
   check_default com.apple.finder ShowSidebar 1
   check_default com.apple.finder ShowPathbar 1
   check_default com.apple.finder FXPreferredViewStyle Nlsv
