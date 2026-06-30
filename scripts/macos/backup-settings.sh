@@ -42,6 +42,8 @@ domains=(
   com.apple.screencapture
   com.apple.SoftwareUpdate
   com.apple.commerce
+  com.apple.controlcenter
+  com.apple.menuextra.clock
   com.apple.spaces
   com.apple.WindowManager
   com.apple.AppleMultitouchTrackpad

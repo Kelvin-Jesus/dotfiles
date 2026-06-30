@@ -64,6 +64,7 @@ fi
 
 for settings_script in \
   global \
+  menu-bar \
   finder \
   screenshots \
   mission-control \
