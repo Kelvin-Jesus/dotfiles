@@ -28,6 +28,19 @@ Para incluir SideScreen e SpotiFLAC, que não possuem cask oficial:
 Esses aplicativos usam releases e SHA-256 fixados. O instalador não remove
 quarentena nem contorna o Gatekeeper.
 
+Para instalar o uBlockDNS sem gravar a account key no repositório ou no
+histórico do shell:
+
+```zsh
+read -s "UBLOCKDNS_PROFILE_ID?uBlockDNS account key: "
+export UBLOCKDNS_PROFILE_ID
+~/dotfiles/install.sh --with-ublockdns
+unset UBLOCKDNS_PROFILE_ID
+```
+
+O instalador verifica o SHA-256 publicado antes de executar o cliente. O
+uBlockDNS é independente e não possui afiliação com o uBlock Origin.
+
 ## Arch Linux
 
 ```sh
