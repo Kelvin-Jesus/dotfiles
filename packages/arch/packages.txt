@@ -1,0 +1,44 @@
+# Bootstrap and build requirements
+base-devel
+curl
+git
+stow
+
+# Shell and terminal
+zsh
+starship
+zsh-autosuggestions
+zsh-syntax-highlighting
+fzf
+zoxide
+eza
+bat
+ripgrep
+shellcheck
+shfmt
+fd
+gping
+btop
+tmux
+go-task
+jq
+fastfetch
+lazygit
+
+# Development
+docker
+docker-compose
+github-cli
+mise
+neovim
+tree-sitter-cli
+gcc
+gleam
+
+# Keyboard mapping
+keyd
+
+# Fonts
+ttf-firacode-nerd
+ttf-jetbrains-mono-nerd
+ttf-iosevka-nerd

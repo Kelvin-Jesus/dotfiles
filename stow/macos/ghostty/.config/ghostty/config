@@ -1,0 +1,15 @@
+font-family = "FiraCode Nerd Font Mono"
+font-family = "JetBrainsMono Nerd Font Mono"
+font-family = "Iosevka Nerd Font Mono"
+font-style = "Retina"
+font-size = 24
+
+# cursor-style = block
+# cursor-style-blink = true
+
+background-opacity = 1
+background-blur = true
+background = #000000
+macos-option-as-alt = true
+
+auto-update-channel = stable
