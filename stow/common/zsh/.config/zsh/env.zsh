@@ -16,6 +16,7 @@ export EDITOR="${EDITOR:-nvim}"
 export VISUAL="${VISUAL:-$EDITOR}"
 export PAGER="${PAGER:-less}"
 export LESS="${LESS:--R}"
+export STARSHIP_CONFIG="${STARSHIP_CONFIG:-${XDG_CONFIG_HOME:-$HOME/.config}/starship.toml}"
 export skills="${skills:-$HOME/Dev/ai-skills}"
 
 if command -v fd >/dev/null 2>&1; then
