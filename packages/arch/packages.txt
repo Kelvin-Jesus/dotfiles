@@ -40,5 +40,3 @@ keyd
 ttf-firacode-nerd
 ttf-jetbrains-mono-nerd
 ttf-iosevka-nerd
-inter-font
-ttf-literata

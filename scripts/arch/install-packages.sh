@@ -25,4 +25,3 @@ if [[ "$ASSUME_YES" -eq 1 ]]; then
 fi
 
 run yay "${yay_args[@]}" "${packages[@]}"
-run_script "$DOTFILES_ROOT/scripts/arch/install-newsreader-font.sh"

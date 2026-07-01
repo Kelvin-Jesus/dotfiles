@@ -151,9 +151,6 @@ if [[ "$platform" == "macos" ]]; then
     "FiraCodeNerdFontMono-Retina.ttf"
     "JetBrainsMono*Nerd*Font*"
     "Iosevka*Nerd*Font*"
-    "Inter*"
-    "Literata*"
-    "Newsreader*"
   )
   for font_pattern in "${fonts[@]}"; do
     if find "$HOME/Library/Fonts" /Library/Fonts -maxdepth 1 -iname "$font_pattern" \
@@ -236,12 +233,6 @@ if [[ "$platform" == "macos" ]]; then
   fi
 else
   check_command syncthing
-  if find "$HOME/.local/share/fonts" /usr/share/fonts -iname 'Newsreader*.ttf' \
-    -print -quit 2>/dev/null | grep -q .; then
-    ok "font: Newsreader"
-  else
-    notice "font not found: Newsreader"
-  fi
   if systemctl is-enabled keyd.service >/dev/null 2>&1; then
     ok "keyd service enabled"
   else
