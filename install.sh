@@ -5,6 +5,7 @@ set -Eeuo pipefail
 DOTFILES_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 # shellcheck source=scripts/lib/common.sh
 source "$DOTFILES_ROOT/scripts/lib/common.sh"
+export PATH="$HOME/.local/bin:$PATH"
 
 SKIP_PACKAGES=0
 SKIP_STOW=0
@@ -110,6 +111,8 @@ run_script "$DOTFILES_ROOT/scripts/install-shell.sh"
 if [[ "$SKIP_RUNTIMES" -eq 0 ]]; then
   run_script "$DOTFILES_ROOT/scripts/install-runtimes.sh"
 fi
+
+run_script "$DOTFILES_ROOT/scripts/install-personal-tools.sh"
 
 if [[ "$SKIP_EDITORS" -eq 0 ]]; then
   run_script "$DOTFILES_ROOT/scripts/install-editors.sh"

@@ -46,6 +46,31 @@ mkdir -p "$HOME/Documents/obsidian-vault" "$HOME/Documents/wallpapers"
 O binário publicado do [mailghost](https://github.com/Kelvin-Jesus/mailghost)
 também é instalado em `~/.local/bin` com versão e SHA-256 fixados.
 
+## Scripts pessoais em Rust
+
+O install compila e instala em `~/.local/bin`:
+
+- `check_true_flac`: identifica FLACs reais pelo cabeçalho;
+- `compress-video`: converte vídeos para HEVC usando `ffmpeg`;
+- `is-avif`: encontra AVIFs com extensão incorreta e atualiza links do Obsidian;
+- `pformat`: imprime o MIME type detectado pelo comando nativo `file`.
+
+Todos aceitam `--dry-run`. Os comandos somente de leitura executam a inspeção
+normal e confirmam que nenhuma alteração será feita. O build usa `CARGO_HOME` e
+`CARGO_TARGET_DIR` temporários: crates e artefatos de compilação são apagados ao
+final, permanecendo apenas os quatro binários. Nenhum comando instala pacotes
+durante a execução. `compress-video` exige `ffmpeg` e `ffprobe` no `PATH`;
+`pformat` exige `file`.
+
+Exemplos:
+
+```sh
+is-avif --dry-run --rename --update-notes ~/Documents/obsidian-vault
+compress-video --dry-run ~/Downloads/videos
+check_true_flac --dry-run --relative ~/Music
+pformat --dry-run ~/Downloads/archive.zip
+```
+
 ## Comandos principais
 
 ```sh

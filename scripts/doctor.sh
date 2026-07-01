@@ -99,6 +99,10 @@ commands=(
   lazygit
   mailghost
   tree-sitter
+  check_true_flac
+  compress-video
+  is-avif
+  pformat
 )
 
 for command_name in "${commands[@]}"; do

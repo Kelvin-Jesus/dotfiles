@@ -58,6 +58,8 @@ if command -v mise >/dev/null 2>&1 || [[ "$DRY_RUN" -eq 1 ]]; then
   run mise "${mise_args[@]}"
 fi
 
+run_script "$DOTFILES_ROOT/scripts/install-personal-tools.sh"
+
 if command -v nvim >/dev/null 2>&1 || [[ "$DRY_RUN" -eq 1 ]]; then
   run env DOTFILES_FASTFETCH_SHOWN=1 nvim --headless '+Lazy! update' +qa
 fi

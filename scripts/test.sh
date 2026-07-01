@@ -3,6 +3,13 @@
 set -Eeuo pipefail
 
 DOTFILES_ROOT="${DOTFILES_ROOT:-$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)}"
+rust_test_root="$(mktemp -d "${TMPDIR:-/tmp}/dotfiles-rust-tests.XXXXXX")"
+trap 'rm -rf "$rust_test_root"' EXIT
+if command -v cargo >/dev/null 2>&1; then
+  cargo_test_command=(cargo)
+else
+  cargo_test_command=(mise exec -- cargo)
+fi
 
 while IFS= read -r script; do
   bash -n "$script"
@@ -22,6 +29,12 @@ zsh -n \
   "$DOTFILES_ROOT/stow/common/zsh/.zshrc" \
   "$DOTFILES_ROOT/stow/common/zsh/.zprofile" \
   "$DOTFILES_ROOT/stow/common/zsh/.config/zsh/"*.zsh
+
+CARGO_HOME="$rust_test_root/cargo-home" \
+  CARGO_TARGET_DIR="$rust_test_root/target" \
+  "${cargo_test_command[@]}" test \
+  --manifest-path "$DOTFILES_ROOT/tools/personal-scripts/Cargo.toml" \
+  --locked
 
 /usr/bin/plutil -lint \
   "$DOTFILES_ROOT/stow/macos/macos/Library/LaunchAgents/com.dotfiles.caps-to-escape.plist"
