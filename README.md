@@ -42,13 +42,23 @@ usuário normal e entrega o restante da instalação ao `yay`.
 ```sh
 ./install.sh --dry-run
 ./install.sh
+./scripts/update.sh
+./scripts/update.sh --dry-run
 ./scripts/sandbox.sh
 ./scripts/doctor.sh
+./scripts/uninstall.sh --dry-run
+./scripts/uninstall.sh
+./scripts/uninstall.sh --restore-settings
 ./scripts/macos/remove-native-apps.sh
 ```
 
 O instalador nunca usa `stow --adopt`. Arquivos conflitantes fazem a etapa
 falhar para evitar sobrescrever dados locais.
+
+`update.sh` atualiza pacotes, runtimes, LazyVim e plugins do tmux. A
+desinstalação remove apenas links e integrações gerenciadas; pacotes, dados,
+repositório e shell de login são preservados. No macOS, `--restore-settings`
+também restaura o backup mais recente.
 
 Consulte [docs/migration-checklist.md](docs/migration-checklist.md) para o
 rollout e [docs/macos-manual.md](docs/macos-manual.md) para ajustes que o macOS
