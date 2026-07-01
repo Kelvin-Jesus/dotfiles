@@ -37,6 +37,8 @@ gcc
 keyd
 
 # Fonts
+ttf-fira-code
 ttf-firacode-nerd
 ttf-jetbrains-mono-nerd
 ttf-iosevka-nerd
+inter-font

@@ -148,9 +148,12 @@ if [[ "$platform" == "macos" ]]; then
   done
 
   fonts=(
+    "FiraCode-*.ttf"
     "FiraCodeNerdFontMono-Retina.ttf"
     "JetBrainsMono*Nerd*Font*"
     "Iosevka*Nerd*Font*"
+    "Inter*"
+    "Newsreader*"
   )
   for font_pattern in "${fonts[@]}"; do
     if find "$HOME/Library/Fonts" /Library/Fonts -maxdepth 1 -iname "$font_pattern" \
@@ -233,6 +236,19 @@ if [[ "$platform" == "macos" ]]; then
   fi
 else
   check_command syncthing
+  for font_pattern in \
+    'FiraCode-*.ttf' \
+    'Iosevka*Nerd*Font*.ttf' \
+    'JetBrainsMono*Nerd*Font*.ttf' \
+    'Inter*' \
+    'Newsreader*.ttf'; do
+    if find "$HOME/.local/share/fonts" /usr/share/fonts -iname "$font_pattern" \
+      -print -quit 2>/dev/null | grep -q .; then
+      ok "font: $font_pattern"
+    else
+      notice "font not found: $font_pattern"
+    fi
+  done
   if systemctl is-enabled keyd.service >/dev/null 2>&1; then
     ok "keyd service enabled"
   else
