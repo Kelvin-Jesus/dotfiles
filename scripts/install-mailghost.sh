@@ -25,23 +25,23 @@ case "$(uname -m)" in
     release_arch="x86_64"
     ;;
   *)
-    die "mailsy does not publish a release for architecture: $(uname -m)"
+    die "mailghost does not publish a release for architecture: $(uname -m)"
     ;;
 esac
 
-asset="mailsy-v$version-$release_os-$release_arch.tar.gz"
+asset="mailghost-v$version-$release_os-$release_arch.tar.gz"
 case "$release_os-$release_arch" in
   macos-aarch64)
-    expected="739aee4be16ed639217785d31dd269584c51466ce69cf5b4e15845fffea11b58"
+    expected="799e435162bca22206250be9792372dae52239b35c8617503b80061c9a704cc1"
     ;;
   macos-x86_64)
-    expected="94612968704c5f9d39645294d43f34300f74e2d22d840b195d07ae731769f955"
+    expected="a5ef95def0124c4cb7cce26a36c3794e4ab3c26ad05bad31d574e259b6a44796"
     ;;
   linux-aarch64)
-    expected="455a3684fff74367f96d3676e9456d9da7ef01240a174df56e9f8edc24a139c9"
+    expected="17483298aadeac85392e75b6e839fd2abae1dd17d76731d3db9ff2fdbc8cba9a"
     ;;
   linux-x86_64)
-    expected="71e21ea6b8f95b80dd9fabf899b8e4558896386b38bb0e34953c0d6dfbb560d0"
+    expected="f0287d8e372b80f4f86a87de19bc015098131241f8b81bb2e9c579d53d867253"
     ;;
 esac
 
@@ -50,14 +50,15 @@ ensure_dir "$install_dir"
 
 if [[ "$DRY_RUN" -eq 1 ]]; then
   log "\$ download and verify $asset"
-  log "\$ install mailsy to $install_dir/mailsy"
+  log "\$ install mailghost to $install_dir/mailghost"
+  log "\$ remove legacy $install_dir/mailsy binary"
   exit 0
 fi
 
 temp_dir="$(mktemp -d)"
 trap 'rm -rf "$temp_dir"' EXIT
 archive="$temp_dir/$asset"
-url="https://github.com/Kelvin-Jesus/mailsy-rs/releases/download/v$version/$asset"
+url="https://github.com/Kelvin-Jesus/mailghost/releases/download/v$version/$asset"
 
 run curl -fsSL "$url" -o "$archive"
 if command -v sha256sum >/dev/null 2>&1; then
@@ -67,6 +68,7 @@ else
 fi
 [[ "$actual" == "$expected" ]] || die "checksum mismatch for $asset"
 
-run tar -xzf "$archive" -C "$temp_dir" mailsy
-run install -m 0755 "$temp_dir/mailsy" "$install_dir/mailsy"
-log "Installed mailsy v$version"
+run tar -xzf "$archive" -C "$temp_dir" mailghost
+run install -m 0755 "$temp_dir/mailghost" "$install_dir/mailghost"
+run rm -f "$install_dir/mailsy"
+log "Installed mailghost v$version"

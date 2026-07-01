@@ -14,7 +14,7 @@
    - projetos;
    - wallpapers;
    - dados do OrbStack.
-5. O projeto `mailsy-rs` deve ficar em `~/Documents` ou `~/Developer`, com
+5. O projeto `mailghost` deve ficar em `~/Documents` ou `~/Developer`, com
    repositório Git próprio; ele não pertence aos dotfiles.
 
 ## Primeiro bootstrap

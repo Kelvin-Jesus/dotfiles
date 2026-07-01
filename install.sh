@@ -98,7 +98,7 @@ if [[ "$SKIP_PACKAGES" -eq 0 ]]; then
       run_script "$DOTFILES_ROOT/scripts/arch/install-packages.sh"
       ;;
   esac
-  run_script "$DOTFILES_ROOT/scripts/install-mailsy.sh"
+  run_script "$DOTFILES_ROOT/scripts/install-mailghost.sh"
 fi
 
 if [[ "$SKIP_STOW" -eq 0 ]]; then

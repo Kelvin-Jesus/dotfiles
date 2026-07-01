@@ -43,7 +43,7 @@ O install executa o equivalente a:
 mkdir -p "$HOME/Documents/obsidian-vault" "$HOME/Documents/wallpapers"
 ```
 
-O binário publicado do [mailsy](https://github.com/Kelvin-Jesus/mailsy-rs)
+O binário publicado do [mailghost](https://github.com/Kelvin-Jesus/mailghost)
 também é instalado em `~/.local/bin` com versão e SHA-256 fixados.
 
 ## Comandos principais

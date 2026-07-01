@@ -48,7 +48,7 @@ case "$platform" in
     ;;
 esac
 
-run_script "$DOTFILES_ROOT/scripts/install-mailsy.sh"
+run_script "$DOTFILES_ROOT/scripts/install-mailghost.sh"
 
 if command -v mise >/dev/null 2>&1 || [[ "$DRY_RUN" -eq 1 ]]; then
   mise_args=(upgrade)
