@@ -1,3 +1,5 @@
 [user]
 	email = kj.avelino.cambiaghi@gmail.com
 	name = Kelvin-Jesus
+[include]
+	path = ~/.gitconfig.local

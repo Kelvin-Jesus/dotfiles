@@ -3,9 +3,10 @@
 ## Antes de trocar de Mac
 
 1. Revise `git status` e o diff desta branch.
-2. Execute `./scripts/sandbox.sh`.
-3. Faça commit, merge em `main` e push para o GitHub.
-4. Confirme backups externos:
+2. Execute `./dotfiles security` e `./dotfiles audit`.
+3. Execute `./dotfiles test`.
+4. Faça commit, merge em `main` e push para o GitHub.
+5. Confirme backups externos:
    - KeePassXC;
    - Obsidian;
    - Anki;
@@ -36,10 +37,11 @@ Para instalar também SideScreen e SpotiFLAC:
 
 ```sh
 cd ~/dotfiles
-./install.sh --dry-run --with-optional-apps
-./scripts/test-stow.sh
-./scripts/macos/apply.sh --dry-run
-./scripts/doctor.sh
+./dotfiles preflight
+./dotfiles install --dry-run --with-optional-apps
+./dotfiles test
+./dotfiles settings --dry-run
+./dotfiles doctor
 ```
 
 Abra um terminal novo e confirme:

@@ -118,6 +118,15 @@ for config_path in \
   check_managed_config "$config_path"
 done
 
+# shellcheck disable=SC2088 # Git stores the include with a literal tilde.
+git_local_include='~/.gitconfig.local'
+if git config --global --get-all include.path 2>/dev/null \
+  | grep -Fqx "$git_local_include"; then
+  ok "Git machine-local include: ~/.gitconfig.local"
+else
+  notice "Git machine-local include is missing"
+fi
+
 platform="$(detect_platform)"
 if [[ -d "$HOME/Documents/wallpapers" ]]; then
   ok "wallpaper directory: $HOME/Documents/wallpapers"

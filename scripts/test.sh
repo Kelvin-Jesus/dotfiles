@@ -15,6 +15,24 @@ while IFS= read -r script; do
   bash -n "$script"
 done < <(find "$DOTFILES_ROOT" -type f -name '*.sh' -print)
 
+"$DOTFILES_ROOT/dotfiles" help >/dev/null
+"$DOTFILES_ROOT/scripts/security-audit.sh" --tracked
+
+security_test_root="$rust_test_root/security-audit"
+mkdir -p "$security_test_root/scripts/lib"
+cp "$DOTFILES_ROOT/scripts/security-audit.sh" "$security_test_root/scripts/"
+cp "$DOTFILES_ROOT/scripts/lib/common.sh" "$security_test_root/scripts/lib/"
+git -C "$security_test_root" init -q
+printf 'service_token = "%s"\n' 'github_''pat_FAKEVALUE123456' \
+  >"$security_test_root/config.txt"
+git -C "$security_test_root" add .
+if "$security_test_root/scripts/security-audit.sh" --staged \
+  >"$security_test_root/output" 2>&1; then
+  die "security audit did not detect the staged fake secret"
+fi
+grep -Fq 'token-like content' "$security_test_root/output" \
+  || die "security audit did not classify the staged fake token"
+
 if command -v shellcheck >/dev/null 2>&1; then
   find "$DOTFILES_ROOT" -type f -name '*.sh' -print0 \
     | xargs -0 shellcheck -x -P SCRIPTDIR

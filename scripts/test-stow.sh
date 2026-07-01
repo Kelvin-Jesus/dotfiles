@@ -17,7 +17,7 @@ run_test() {
     DOTFILES_ROOT="$DOTFILES_ROOT" \
     DOTFILES_STATE_DIR="$temp_home/.local/state/dotfiles" \
     DOTFILES_DRY_RUN=0 \
-    "$apply_script"
+    "$apply_script" "$@"
 }
 
 run_test
@@ -43,5 +43,25 @@ expected=(
 for path in "${expected[@]}"; do
   [[ -L "$path" ]] || die "expected Stow symlink was not created: $path"
 done
+
+conflict="$temp_home/.config/starship.toml"
+rm "$conflict"
+printf 'local conflict\n' >"$conflict"
+preflight_script="$DOTFILES_ROOT/scripts/stow-preflight.sh"
+
+if HOME="$temp_home" \
+  STOW_TARGET="$temp_home" \
+  DOTFILES_ROOT="$DOTFILES_ROOT" \
+  DOTFILES_STATE_DIR="$temp_home/.local/state/dotfiles" \
+  "$preflight_script"; then
+  die "Stow preflight accepted a conflicting regular file"
+fi
+
+run_test --backup-conflicts
+[[ -L "$conflict" ]] || die "conflicting file was not replaced by a Stow link"
+backup_link="$temp_home/.local/state/dotfiles/backups/stow/latest"
+[[ -L "$backup_link" ]] || die "Stow conflict backup pointer was not created"
+grep -Fqx 'local conflict' "$backup_link/.config/starship.toml" \
+  || die "Stow conflict content was not preserved"
 
 log "Stow is idempotent in a temporary HOME"

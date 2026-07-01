@@ -5,6 +5,8 @@ set -Eeuo pipefail
 DOTFILES_ROOT="${DOTFILES_ROOT:-$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)}"
 # shellcheck source=lib/common.sh
 source "$DOTFILES_ROOT/scripts/lib/common.sh"
+# shellcheck source=lib/stow-packages.sh
+source "$DOTFILES_ROOT/scripts/lib/stow-packages.sh"
 
 RESTORE_SETTINGS=0
 BACKUP_DIR=""
@@ -53,12 +55,11 @@ init_log "uninstall"
 
 platform="$(detect_platform)"
 target_home="${STOW_TARGET:-$HOME}"
-common_packages=(btop git mise nvim starship tmux zed zsh)
 platform_packages=()
 
 case "$platform" in
   macos)
-    platform_packages=(ghostty macos)
+    platform_packages=("${macos_stow_packages[@]}")
     if [[ "$RESTORE_SETTINGS" -eq 1 ]]; then
       backup_dir="${BACKUP_DIR:-$DOTFILES_STATE_DIR/backups/macos/latest}"
       restore_args=()
@@ -99,7 +100,7 @@ unstow_packages() {
   done
 }
 
-unstow_packages "$DOTFILES_ROOT/stow/common" "${common_packages[@]}"
+unstow_packages "$DOTFILES_ROOT/stow/common" "${common_stow_packages[@]}"
 if ((${#platform_packages[@]})); then
   unstow_packages "$DOTFILES_ROOT/stow/$platform" "${platform_packages[@]}"
 fi

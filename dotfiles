@@ -1,0 +1,95 @@
+#!/usr/bin/env bash
+
+set -Eeuo pipefail
+
+DOTFILES_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+usage() {
+  cat <<'EOF'
+Usage: ./dotfiles <command> [options]
+
+Commands:
+  install      Complete installation
+  packages     Install declared packages and applications
+  stow         Apply managed configuration links
+  settings     Apply macOS or Arch settings
+  preflight    Check Stow conflicts without changing files
+  audit        Compare this machine with the repository
+  security     Scan tracked or staged files for secrets
+  doctor       Validate the installed environment
+  test         Run static, Rust and sandbox tests
+  update       Update packages, runtimes and managed tools
+  restore      Restore a macOS settings backup
+  uninstall    Remove managed links and integrations
+  help         Show this help
+EOF
+}
+
+command_name="${1:-help}"
+if [[ $# -gt 0 ]]; then
+  shift
+fi
+
+case "$command_name" in
+  install)
+    exec "$DOTFILES_ROOT/install.sh" "$@"
+    ;;
+  packages)
+    exec "$DOTFILES_ROOT/scripts/install-packages.sh" "$@"
+    ;;
+  stow)
+    exec "$DOTFILES_ROOT/scripts/apply-stow.sh" "$@"
+    ;;
+  settings)
+    exec "$DOTFILES_ROOT/scripts/apply-settings.sh" "$@"
+    ;;
+  preflight)
+    exec "$DOTFILES_ROOT/scripts/stow-preflight.sh" "$@"
+    ;;
+  audit)
+    exec "$DOTFILES_ROOT/scripts/audit.sh" "$@"
+    ;;
+  security)
+    exec "$DOTFILES_ROOT/scripts/security-audit.sh" "$@"
+    ;;
+  doctor)
+    exec "$DOTFILES_ROOT/scripts/doctor.sh" "$@"
+    ;;
+  test)
+    exec "$DOTFILES_ROOT/scripts/test.sh" "$@"
+    ;;
+  update)
+    exec "$DOTFILES_ROOT/scripts/update.sh" "$@"
+    ;;
+  restore)
+    if [[ "$(uname -s)" != "Darwin" ]]; then
+      printf 'dotfiles: restore is only available on macOS\n' >&2
+      exit 1
+    fi
+    restore_has_backup=0
+    for argument in "$@"; do
+      case "$argument" in
+        -*)
+          ;;
+        *)
+          restore_has_backup=1
+          ;;
+      esac
+    done
+    if [[ "$restore_has_backup" -eq 0 ]]; then
+      set -- "$@" "$HOME/.local/state/dotfiles/backups/macos/latest"
+    fi
+    exec "$DOTFILES_ROOT/scripts/macos/restore-settings.sh" "$@"
+    ;;
+  uninstall)
+    exec "$DOTFILES_ROOT/scripts/uninstall.sh" "$@"
+    ;;
+  help | -h | --help)
+    usage
+    ;;
+  *)
+    printf 'dotfiles: unknown command: %s\n\n' "$command_name" >&2
+    usage >&2
+    exit 1
+    ;;
+esac

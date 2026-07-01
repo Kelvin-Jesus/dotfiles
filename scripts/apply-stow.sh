@@ -5,25 +5,28 @@ set -Eeuo pipefail
 DOTFILES_ROOT="${DOTFILES_ROOT:-$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)}"
 # shellcheck source=lib/common.sh
 source "$DOTFILES_ROOT/scripts/lib/common.sh"
+# shellcheck source=lib/stow-packages.sh
+source "$DOTFILES_ROOT/scripts/lib/stow-packages.sh"
 
 TARGET_HOME="${STOW_TARGET:-$HOME}"
 platform="$(detect_platform)"
+BACKUP_CONFLICTS=0
 
-common_packages=(
-  btop
-  git
-  mise
-  nvim
-  starship
-  tmux
-  zed
-  zsh
-)
-
-macos_packages=(
-  ghostty
-  macos
-)
+while [[ $# -gt 0 ]]; do
+  case "$1" in
+    --backup-conflicts)
+      BACKUP_CONFLICTS=1
+      ;;
+    -h | --help)
+      printf 'Usage: apply-stow.sh [--backup-conflicts]\n'
+      exit 0
+      ;;
+    *)
+      die "unknown option: $1"
+      ;;
+  esac
+  shift
+done
 
 legacy_paths=(
   "$TARGET_HOME/.config/btop"
@@ -120,10 +123,20 @@ stow_packages() {
 ensure_dir "$TARGET_HOME"
 cleanup_legacy_layout
 cleanup_broken_managed_links
-stow_packages "$DOTFILES_ROOT/stow/common" "${common_packages[@]}"
+preflight_args=()
+if [[ "$BACKUP_CONFLICTS" -eq 1 ]]; then
+  preflight_args+=(--backup-conflicts)
+fi
+if ((${#preflight_args[@]})); then
+  run_script "$DOTFILES_ROOT/scripts/stow-preflight.sh" "${preflight_args[@]}"
+else
+  run_script "$DOTFILES_ROOT/scripts/stow-preflight.sh"
+fi
+
+stow_packages "$DOTFILES_ROOT/stow/common" "${common_stow_packages[@]}"
 
 if [[ "$platform" == "macos" ]]; then
-  stow_packages "$DOTFILES_ROOT/stow/macos" "${macos_packages[@]}"
+  stow_packages "$DOTFILES_ROOT/stow/macos" "${macos_stow_packages[@]}"
 fi
 
 log "Stow packages applied to $TARGET_HOME"

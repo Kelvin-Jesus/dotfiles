@@ -74,20 +74,46 @@ pformat --dry-run ~/Downloads/archive.zip
 ## Comandos principais
 
 ```sh
-./install.sh --dry-run
-./install.sh
-./scripts/update.sh
-./scripts/update.sh --dry-run
-./scripts/sandbox.sh
-./scripts/doctor.sh
-./scripts/uninstall.sh --dry-run
-./scripts/uninstall.sh
-./scripts/uninstall.sh --restore-settings
-./scripts/macos/remove-native-apps.sh
+./dotfiles preflight
+./dotfiles install --dry-run
+./dotfiles install
+./dotfiles audit
+./dotfiles security
+./dotfiles doctor
+./dotfiles test
+./dotfiles update --dry-run
+./dotfiles update
+./dotfiles restore
+./dotfiles uninstall --dry-run
+```
+
+`./dotfiles` é a interface principal, mas os scripts em `scripts/` continuam
+podendo ser executados diretamente.
+
+O preflight compara todos os destinos Stow sem alterar arquivos. Um install
+normal para ao encontrar conflitos. Para preservar e substituir os conflitos
+explicitamente:
+
+```sh
+./dotfiles install --backup-conflicts
+```
+
+Os arquivos são movidos para
+`~/.local/state/dotfiles/backups/stow/<timestamp>/`, mantendo o caminho relativo
+ao `$HOME`.
+
+`./dotfiles audit` é somente leitura: compara pacotes declarados, links Stow,
+configurações não gerenciadas, estado do Git e o doctor. Ele nunca copia
+configurações locais para o repositório. `./dotfiles security` procura nomes de
+arquivos sensíveis, tokens, atribuições de segredos e chaves privadas sem
+imprimir os possíveis valores. Antes de um commit, use:
+
+```sh
+./dotfiles security --staged
 ```
 
 O instalador nunca usa `stow --adopt`. Arquivos conflitantes fazem a etapa
-falhar para evitar sobrescrever dados locais.
+falhar, salvo quando `--backup-conflicts` é fornecido explicitamente.
 
 `update.sh` atualiza pacotes, runtimes, LazyVim e plugins do tmux. A
 desinstalação remove apenas links e integrações gerenciadas; pacotes, dados,
