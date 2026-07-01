@@ -1,0 +1,46 @@
+@font-face {
+  font-family: "Newsreader Vault";
+  src: url("../fonts/Newsreader-Variable.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 200 800;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Newsreader Vault";
+  src: url("../fonts/Newsreader-Italic-Variable.ttf") format("truetype");
+  font-style: italic;
+  font-weight: 200 800;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Inter Vault";
+  src: url("../fonts/Inter-Variable.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Inter Vault";
+  src: url("../fonts/Inter-Italic-Variable.ttf") format("truetype");
+  font-style: italic;
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "FiraCode Nerd Font Mono Vault";
+  src: url("../fonts/FiraCodeNerdFontMono-Retina.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 450;
+  font-display: swap;
+}
+
+body {
+  --font-interface: "Inter Vault", Inter, sans-serif;
+  --font-text: "Newsreader Vault", Newsreader, Literata, serif;
+  --font-monospace: "FiraCode Nerd Font Mono Vault", "FiraCode Nerd Font Mono",
+    monospace;
+}

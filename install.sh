@@ -111,6 +111,8 @@ if [[ "$SKIP_EDITORS" -eq 0 ]]; then
   run_script "$DOTFILES_ROOT/scripts/install-editors.sh"
 fi
 
+run_script "$DOTFILES_ROOT/scripts/install-obsidian-fonts.sh"
+
 if [[ "$SKIP_SETTINGS" -eq 0 ]]; then
   case "$platform" in
     macos)

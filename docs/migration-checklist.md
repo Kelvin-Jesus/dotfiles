@@ -65,7 +65,9 @@ Antes de apagar ou entregar a máquina antiga, confirme cada item:
 - [ ] **KeePassXC:** banco e eventual key file foram copiados separadamente e o
       banco abre no Mac novo.
 - [ ] **Obsidian:** vault, anexos, plugins e snippets foram sincronizados e uma
-      nota foi editada para testar escrita.
+      nota foi editada para testar escrita; execute
+      `~/dotfiles/scripts/install-obsidian-fonts.sh` depois da primeira
+      sincronização para instalar as fontes portáteis no macOS e Android.
 - [ ] **Anki:** coleção e mídia foram sincronizadas ou exportadas e abertas no
       Mac novo.
 - [ ] **Zen:** perfil, favoritos, extensões e códigos de recuperação foram
