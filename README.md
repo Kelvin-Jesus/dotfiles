@@ -37,6 +37,15 @@ quarentena nem contorna o Gatekeeper.
 O bootstrap instala `base-devel`, Git e Stow com `pacman`, compila `yay` como
 usuário normal e entrega o restante da instalação ao `yay`.
 
+O install executa o equivalente a:
+
+```sh
+mkdir -p "$HOME/Documents/obsidian-vault" "$HOME/Documents/wallpapers"
+```
+
+O binário publicado do [mailsy](https://github.com/Kelvin-Jesus/mailsy-rs)
+também é instalado em `~/.local/bin` com versão e SHA-256 fixados.
+
 ## Comandos principais
 
 ```sh

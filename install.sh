@@ -75,6 +75,9 @@ platform="$(detect_platform)"
 init_log "install"
 log "Installing dotfiles for $platform from $DOTFILES_ROOT"
 
+ensure_dir "$HOME/Documents/obsidian-vault"
+ensure_dir "$HOME/Documents/wallpapers"
+
 if [[ "$SKIP_PACKAGES" -eq 0 ]]; then
   case "$platform" in
     macos)
@@ -95,6 +98,7 @@ if [[ "$SKIP_PACKAGES" -eq 0 ]]; then
       run_script "$DOTFILES_ROOT/scripts/arch/install-packages.sh"
       ;;
   esac
+  run_script "$DOTFILES_ROOT/scripts/install-mailsy.sh"
 fi
 
 if [[ "$SKIP_STOW" -eq 0 ]]; then

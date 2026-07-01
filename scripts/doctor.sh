@@ -97,6 +97,7 @@ commands=(
   nvim
   stow
   lazygit
+  mailsy
   tree-sitter
 )
 
