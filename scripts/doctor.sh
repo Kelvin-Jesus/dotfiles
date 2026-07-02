@@ -80,6 +80,7 @@ commands=(
   starship
   fzf
   zoxide
+  dust
   eza
   bat
   rg

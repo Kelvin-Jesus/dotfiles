@@ -11,6 +11,7 @@ zsh-autosuggestions
 zsh-syntax-highlighting
 fzf
 zoxide
+dust
 eza
 bat
 ripgrep

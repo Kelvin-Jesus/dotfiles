@@ -5,6 +5,9 @@ alias l='eza --long --all --header --git --icons=auto --group-directories-first'
 alias lsa='eza --long --all --header --git --icons=auto --group-directories-first'
 alias tree='eza --tree --icons=auto --group-directories-first'
 
+alias du-native='command du'
+alias du='dust'
+
 alias ping-native='command ping'
 alias ping='gping'
 

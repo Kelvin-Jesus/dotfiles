@@ -50,6 +50,8 @@ Abra um terminal novo e confirme:
 - Starship e os ícones Nerd Font funcionam;
 - `ping` executa `gping`;
 - `ping-native` executa o ping original;
+- `du` executa `dust`;
+- `du-native` executa o `du` original;
 - LazyVim abre sem referências ao AstroNvim;
 - `Caps Lock` produz Escape;
 - Finder, Dock e Favoritos têm a ordem esperada.
