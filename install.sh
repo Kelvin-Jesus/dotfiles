@@ -125,6 +125,7 @@ if [[ "$SKIP_RUNTIMES" -eq 0 ]]; then
 fi
 
 run_script "$DOTFILES_ROOT/scripts/install-personal-tools.sh"
+run_script "$DOTFILES_ROOT/scripts/seed-zoxide.sh"
 
 if [[ "$SKIP_EDITORS" -eq 0 ]]; then
   run_script "$DOTFILES_ROOT/scripts/install-editors.sh"

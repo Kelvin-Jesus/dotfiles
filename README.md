@@ -43,6 +43,16 @@ O install executa o equivalente a:
 mkdir -p "$HOME/Documents/obsidian-vault" "$HOME/Documents/wallpapers"
 ```
 
+Ele também semeia o banco local do zoxide com `~/Developer`,
+`~/Documents/obsidian-vault` e `~/Documents/wallpapers`. O zsh inclui atalhos
+estáveis para essas pastas:
+
+```sh
+dev
+obsidian
+wallpapers
+```
+
 O binário publicado do [mailghost](https://github.com/Kelvin-Jesus/mailghost)
 também é instalado em `~/.local/bin` com versão e SHA-256 fixados.
 

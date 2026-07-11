@@ -135,6 +135,20 @@ else
   notice "wallpaper directory missing: $HOME/Documents/wallpapers"
 fi
 
+for zoxide_dir in \
+  "$HOME/Developer" \
+  "$HOME/Documents/obsidian-vault" \
+  "$HOME/Documents/wallpapers"; do
+  if [[ ! -d "$zoxide_dir" ]]; then
+    notice "zoxide target directory missing: $zoxide_dir"
+  elif command -v zoxide >/dev/null 2>&1 \
+    && zoxide query --list | grep -Fxq "$zoxide_dir"; then
+    ok "zoxide seed: $zoxide_dir"
+  else
+    notice "zoxide seed missing: $zoxide_dir"
+  fi
+done
+
 if [[ "$platform" == "macos" ]]; then
   apps=(
     "Anki.app"

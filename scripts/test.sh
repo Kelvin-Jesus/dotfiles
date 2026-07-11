@@ -67,7 +67,8 @@ CARGO_HOME="$rust_test_root/cargo-home" \
 
 if rg -n '/Users/kajota' "$DOTFILES_ROOT" \
   --glob '!.git/**' \
-  --glob '!scripts/test.sh'; then
+  --glob '!scripts/test.sh' \
+  --glob '!**/scripts/test.sh'; then
   printf 'Hard-coded home directory found\n' >&2
   exit 1
 fi

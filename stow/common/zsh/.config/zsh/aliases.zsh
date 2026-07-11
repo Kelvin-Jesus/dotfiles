@@ -54,3 +54,27 @@ alias history='history-list'
 alias reload-zsh='exec zsh'
 alias zshconfig='$EDITOR ~/.zshrc'
 alias starshipconfig='$EDITOR ~/.config/starship.toml'
+
+_dotfiles_zoxide_jump() {
+  emulate -L zsh
+
+  local target
+  target="$1"
+  if (( $+commands[zoxide] )); then
+    z "$target"
+  else
+    cd "$target"
+  fi
+}
+
+dev() {
+  _dotfiles_zoxide_jump "$HOME/Developer"
+}
+
+obsidian() {
+  _dotfiles_zoxide_jump "$HOME/Documents/obsidian-vault"
+}
+
+wallpapers() {
+  _dotfiles_zoxide_jump "$HOME/Documents/wallpapers"
+}
