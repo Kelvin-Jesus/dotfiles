@@ -57,6 +57,11 @@ CARGO_HOME="$rust_test_root/cargo-home" \
 /usr/bin/plutil -lint \
   "$DOTFILES_ROOT/stow/macos/macos/Library/LaunchAgents/com.dotfiles.caps-to-escape.plist"
 
+if command -v jq >/dev/null 2>&1; then
+  find "$DOTFILES_ROOT/assets/keyboards" -type f -name '*.vil' -print0 \
+    | xargs -0 -n1 jq empty
+fi
+
 "$DOTFILES_ROOT/scripts/test-stow.sh"
 /bin/bash "$DOTFILES_ROOT/install.sh" \
   --dry-run \

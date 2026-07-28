@@ -8,6 +8,11 @@ Não fazem parte deste repositório: credenciais do GitHub, perfis de navegador,
 vault do Obsidian, coleção do Anki, banco do KeePassXC, identidades do
 Syncthing, projetos e wallpapers pesados.
 
+Configurações portáveis de hardware podem ficar em `assets/`. O layout do
+Silakka54 está em
+`assets/keyboards/silakka54/kj-custom-silakka54.vil` e deve ser importado
+manualmente pelo Vial/VIA quando o teclado estiver conectado.
+
 ## macOS novo
 
 Execute primeiro o bootstrap usando apenas ferramentas nativas:
