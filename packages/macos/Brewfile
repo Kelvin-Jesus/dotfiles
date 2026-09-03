@@ -36,8 +36,10 @@ brew "dockutil"
 # Development and media tools.
 brew "ffmpeg"
 brew "gcc"
+brew "imagemagick"
 brew "p7zip"
 brew "pnpm"
+brew "pngpaste"
 
 # Applications.
 cask "android-commandlinetools"
