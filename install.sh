@@ -126,6 +126,10 @@ fi
 
 run_script "$DOTFILES_ROOT/scripts/install-personal-tools.sh"
 
+if [[ "$platform" == "macos" ]]; then
+  run_script "$DOTFILES_ROOT/scripts/macos/install-claude-tools.sh"
+fi
+
 if [[ "$SKIP_EDITORS" -eq 0 ]]; then
   run_script "$DOTFILES_ROOT/scripts/install-editors.sh"
 fi

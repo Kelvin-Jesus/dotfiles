@@ -2,7 +2,10 @@
 bun = "latest"
 go = "latest"
 node = "latest"
+"cargo:tauri-cli" = "latest"
+"npm:@mermaid-js/mermaid-cli" = "latest"
 "npm:yarn" = "latest"
+"pipx:mlx-lm" = "latest"
 python = "latest"
 rust = "latest"
 

@@ -8,7 +8,7 @@ source "$DOTFILES_ROOT/scripts/lib/common.sh"
 require_macos
 
 if [[ $# -eq 0 ]]; then
-  printf 'Usage: install-release-apps.sh [--dry-run] open-design|sidescreen|spotiflac [...]\n'
+  printf 'Usage: install-release-apps.sh [--dry-run] open-design|sidescreen|spotiflac|motrixmac|omlx|learnharness|index0 [...]\n'
   exit 1
 fi
 
@@ -19,7 +19,7 @@ while [[ $# -gt 0 ]]; do
       DRY_RUN=1
       ;;
     -h | --help)
-      printf 'Usage: install-release-apps.sh [--dry-run] open-design|sidescreen|spotiflac [...]\n'
+      printf 'Usage: install-release-apps.sh [--dry-run] open-design|sidescreen|spotiflac|motrixmac|omlx|learnharness|index0 [...]\n'
       exit 0
       ;;
     *)
@@ -120,6 +120,79 @@ for app in "${apps[@]}"; do
         https://github.com/spotbye/SpotiFLAC/releases/download/v7.1.9/SpotiFLAC.dmg \
         5584f69964b3c8bf4a505aa02d1f6af1ce8b53ce864bdf2a341017e85ecf3e43 \
         "SpotiFLAC.app"
+      ;;
+    motrixmac)
+      case "$(uname -m)" in
+        arm64)
+          install_dmg \
+            motrixmac \
+            1.2.8 \
+            https://github.com/ShawnRn/MotrixMac/releases/download/v1.2.8/MotrixMac_1.2.8_arm64.dmg \
+            65ed7f9f88fa9eab7a77f8f68b3328be0612016c3f2d690cfbf37cccfae8f0ba \
+            "MotrixMac.app"
+          ;;
+        x86_64)
+          install_dmg \
+            motrixmac \
+            1.2.8 \
+            https://github.com/ShawnRn/MotrixMac/releases/download/v1.2.8/MotrixMac_1.2.8_x86_64.dmg \
+            53deba2948a823e906bebe9c9aff9d2937cf3aa698e4a90dc41996801ba8c802 \
+            "MotrixMac.app"
+          ;;
+        *)
+          die "unsupported architecture for MotrixMac: $(uname -m)"
+          ;;
+      esac
+      ;;
+    omlx)
+      [[ "$(uname -m)" == "arm64" ]] || die "oMLX requires Apple Silicon"
+      if [[ "$(/usr/bin/sw_vers -productVersion | cut -d. -f1)" -ge 26 ]]; then
+        install_dmg \
+          omlx \
+          0.8.3 \
+          https://github.com/jundot/omlx/releases/download/v0.8.3/oMLX-0.8.3-macos26-27.dmg \
+          a3985ac20f53a5a9a1656ec19353e00ff0a628aae1285bfa5164fd600217af07 \
+          "oMLX.app"
+      else
+        install_dmg \
+          omlx \
+          0.8.3 \
+          https://github.com/jundot/omlx/releases/download/v0.8.3/oMLX-0.8.3-macos15-sequoia.dmg \
+          f2122da492650d33ea89ad558e0572846738557b02e0e1fd7778520880069c0b \
+          "oMLX.app"
+      fi
+      ;;
+    learnharness)
+      [[ "$(uname -m)" == "arm64" ]] || die "LearnHarness requires Apple Silicon"
+      install_dmg \
+        learnharness \
+        0.7.0 \
+        https://github.com/amosblomqvist/learnharness/releases/download/v0.7.0/LearnHarness-0.7.0-arm64.dmg \
+        64ffab3cec0a49310fa7551335025d7078b7b57f2e283a26a17a4cdc4533e314 \
+        "LearnHarness.app"
+      ;;
+    index0)
+      case "$(uname -m)" in
+        arm64)
+          install_dmg \
+            index0 \
+            1.9.2 \
+            https://github.com/MadhumithaKolkar/index0-releases/releases/download/v1.9.2/INDEX0-arm64.dmg \
+            fceb7e7e164a0d1add7dbf5dca53d8a195bf95ecbd0c83d56e8d5ee612c54fc9 \
+            "INDEX 0.app"
+          ;;
+        x86_64)
+          install_dmg \
+            index0 \
+            1.9.2 \
+            https://github.com/MadhumithaKolkar/index0-releases/releases/download/v1.9.2/INDEX0-x64.dmg \
+            4b8efd24cc7357e2104c128a28ef680edaa47420098bab48db5086ca50b2514c \
+            "INDEX 0.app"
+          ;;
+        *)
+          die "unsupported architecture for INDEX 0: $(uname -m)"
+          ;;
+      esac
       ;;
     *)
       die "unknown release app: $app"

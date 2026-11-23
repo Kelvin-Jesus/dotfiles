@@ -1,0 +1,247 @@
+{
+  "cleanupPeriodDays": 365,
+  "env": {
+    "CLAUDE_CODE_SUBAGENT_MODEL": "haiku"
+  },
+  "permissions": {
+    "defaultMode": "default"
+  },
+  "model": "opus",
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"$HOME/Applications/ai-memory/ai-memory\" --data-dir \"$HOME/Library/Application Support/ai-memory\" hook --event post-tool-use --agent claude-code --server-url http://127.0.0.1:49374"
+          }
+        ]
+      }
+    ],
+    "PreCompact": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"$HOME/Applications/ai-memory/ai-memory\" --data-dir \"$HOME/Library/Application Support/ai-memory\" hook --event pre-compact --agent claude-code --server-url http://127.0.0.1:49374"
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"$HOME/Applications/ai-memory/ai-memory\" --data-dir \"$HOME/Library/Application Support/ai-memory\" hook --event pre-tool-use --agent claude-code --server-url http://127.0.0.1:49374"
+          }
+        ]
+      },
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "rtk hook claude"
+          }
+        ]
+      }
+    ],
+    "SessionEnd": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"$HOME/Applications/ai-memory/ai-memory\" --data-dir \"$HOME/Library/Application Support/ai-memory\" hook --event session-end --agent claude-code --server-url http://127.0.0.1:49374"
+          }
+        ]
+      }
+    ],
+    "SessionStart": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"$HOME/.local/bin/ai-memoryd\" ensure",
+            "timeout": 20
+          }
+        ]
+      },
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"$HOME/Applications/ai-memory/ai-memory\" --data-dir \"$HOME/Library/Application Support/ai-memory\" hook --event session-start --agent claude-code --server-url http://127.0.0.1:49374"
+          }
+        ]
+      },
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"$HOME/.claude/hooks/herdr-agent-state.sh\" session",
+            "timeout": 10
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"$HOME/Applications/ai-memory/ai-memory\" --data-dir \"$HOME/Library/Application Support/ai-memory\" hook --event stop --agent claude-code --server-url http://127.0.0.1:49374"
+          }
+        ]
+      }
+    ],
+    "SubagentStart": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"$HOME/Applications/ai-memory/ai-memory\" --data-dir \"$HOME/Library/Application Support/ai-memory\" hook --event subagent-start --agent claude-code --server-url http://127.0.0.1:49374"
+          }
+        ]
+      }
+    ],
+    "SubagentStop": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"$HOME/Applications/ai-memory/ai-memory\" --data-dir \"$HOME/Library/Application Support/ai-memory\" hook --event subagent-stop --agent claude-code --server-url http://127.0.0.1:49374"
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"$HOME/Applications/ai-memory/ai-memory\" --data-dir \"$HOME/Library/Application Support/ai-memory\" hook --event user-prompt-submit --agent claude-code --server-url http://127.0.0.1:49374"
+          }
+        ]
+      }
+    ]
+  },
+  "worktree": {
+    "baseRef": "fresh"
+  },
+  "enableWorkflows": true,
+  "workflowKeywordTriggerEnabled": false,
+  "enabledPlugins": {
+    "i-have-adhd@i-have-adhd": true,
+    "cc-plugin-you-should-know@builtin": true,
+    "egm@egm": true,
+    "cadence@kj-mods": true
+  },
+  "extraKnownMarketplaces": {
+    "i-have-adhd": {
+      "source": {
+        "source": "github",
+        "repo": "ayghri/i-have-adhd"
+      }
+    },
+    "pstack-claude": {
+      "source": {
+        "source": "github",
+        "repo": "michael-denyer/pstack-claude"
+      }
+    },
+    "egm": {
+      "source": {
+        "source": "github",
+        "repo": "google/elephant-goldfish-model"
+      }
+    },
+    "kj-mods": {
+      "source": {
+        "source": "directory",
+        "path": "/Users/kj/Developer/personal-projects/claude-mods"
+      }
+    }
+  },
+  "feedbackDrafts": "off",
+  "modelSettings": {
+    "claude-opus-5": {
+      "effortLevel": "xhigh"
+    },
+    "claude-sonnet-5": {
+      "effortLevel": "medium"
+    },
+    "claude-sonnet-5-5": {
+      "effortLevel": "low"
+    }
+  },
+  "promptSuggestionEnabled": false,
+  "awaySummaryEnabled": false,
+  "askUserQuestionTimeout": "never",
+  "pluginConfigs": {
+    "cadence@kj-mods": {
+      "options": {
+        "language": "en",
+        "contextBudget": "350000",
+        "autoEffort": "on",
+        "judge": "auto",
+        "minEffort": "low",
+        "maxEffort": "max",
+        "bias": "0",
+        "theme": "catppuccin",
+        "compactWith": "haiku",
+        "idleMinutes": "60",
+        "idleMinTokens": "30000",
+        "heavyPct": "85",
+        "afterHandoff": "continue",
+        "handoffAdvice": "on"
+      }
+    }
+  },
+  "theme": "dark",
+  "editorMode": "normal",
+  "verbose": false,
+  "preferredNotifChannel": "auto",
+  "terminalProgressBarEnabled": false,
+  "remoteControlAtStartup": true,
+  "crossSessionInbound": "accept",
+  "autoMode": {
+    "environment": [
+      "### Org-wide",
+      "**Organization**: None configured",
+      "**Cloud provider(s)**: None configured",
+      "**Repository visibility**: private (Kelvin-Jesus/mnemosyne, confirmed via gh)",
+      "**Internal sharing / snippet hosting**: None configured — treat public paste/gist services as outside the trust boundary",
+      "**Secrets management**: None configured",
+      "**Default / protected branches**: main (default); no rulesets or protected branches listed on Kelvin-Jesus/mnemosyne",
+      "**CI/CD deploy targets**: None configured",
+      "**Network posture**: None configured",
+      "**Host containment**: None configured — assume Claude Code runs on an ordinary developer machine or CI runner with open internet",
+      "**Source control**: The trusted repo (Kelvin-Jesus/mnemosyne) and its remote (github.com:Kelvin-Jesus/mnemosyne.git) only",
+      "**Trusted internal domains**: None configured",
+      "**Trusted cloud buckets**: None configured",
+      "**Key internal services**: None configured",
+      "**Internal package registry**: None configured",
+      "**Sensitive data locations & audiences**: any file or store holding personal data, confidential business data, credentials, regulated data, or similarly sensitive material; preserve exact handles when known and share only with audiences cleared at the [named+specifics] bar",
+      "**Data retention / declassification**: None configured",
+      "**Sensitive remote targets**: any namespace, host, or container whose name carries `prod` or `production` as a whole word or name segment",
+      "**Protected deployment namespaces / environments**: None configured — fall back to the Sensitive remote targets heuristic",
+      "**Protected IaC scopes**: IAM, RBAC, networking, quota, and node-pool resources; anything whose name or tag carries `prod` or `production` as a whole word or name segment",
+      "### User-specific",
+      "**Primary use of Claude Code**: software development",
+      "**Trusted repo**: /Users/kj/Developer/personal-projects/mnemosyne (git working directory) and its remote github.com:Kelvin-Jesus/mnemosyne.git — private repository",
+      "**Org-specific CLIs**: None configured"
+    ]
+  }
+}

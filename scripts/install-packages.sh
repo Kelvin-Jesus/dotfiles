@@ -44,11 +44,13 @@ case "$platform" in
       require_command brew
     fi
     run brew tap go-task/tap
+    run brew tap can1357/tap
     if [[ "$DRY_RUN" -eq 1 ]] || brew help trust >/dev/null 2>&1; then
-      run brew trust --formula go-task/tap/go-task
+      run brew trust --cask go-task/tap/go-task
+      run brew trust --formula can1357/tap/omp
     fi
     run brew bundle install --file="$DOTFILES_ROOT/packages/macos/Brewfile"
-    run_script "$DOTFILES_ROOT/scripts/macos/install-release-apps.sh" open-design
+    run_script "$DOTFILES_ROOT/scripts/macos/install-release-apps.sh" open-design motrixmac omlx learnharness index0
     if [[ "$WITH_OPTIONAL_APPS" -eq 1 ]]; then
       run_script "$DOTFILES_ROOT/scripts/macos/install-release-apps.sh" sidescreen spotiflac
     fi

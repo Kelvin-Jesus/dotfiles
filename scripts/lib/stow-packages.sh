@@ -17,6 +17,7 @@ common_stow_packages=(
 )
 
 macos_stow_packages=(
+  claude
   ghostty
   macos
 )

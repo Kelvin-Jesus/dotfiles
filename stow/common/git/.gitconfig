@@ -3,3 +3,5 @@
 	name = Kelvin-Jesus
 [include]
 	path = ~/.gitconfig.local
+[init]
+	defaultBranch = main

@@ -12,4 +12,7 @@ background-blur = false
 background = #000
 macos-option-as-alt = true
 
+keybind = cmd+left=text:\x01
+keybind = cmd+right=text:\x05
+
 auto-update-channel = stable

@@ -5,11 +5,16 @@ path=("$HOME/.local/bin" $path)
 for optional_bin in \
   "$HOME/.lmstudio/bin" \
   "$HOME/.antigravity/antigravity/bin" \
+  "$HOME/.antigravity-ide/antigravity-ide/bin" \
+  "$HOME/.omlx/bin" \
   "$HOME/.mimocode/bin"
 do
   [[ -d "$optional_bin" ]] && path=("$optional_bin" $path)
 done
 unset optional_bin
+
+# Kiri ships its own docker shim, so it goes last to keep OrbStack's docker first.
+[[ -d "$HOME/.kiri/bin" ]] && path+=("$HOME/.kiri/bin")
 
 export PATH
 export EDITOR="${EDITOR:-nvim}"

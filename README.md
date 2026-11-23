@@ -46,6 +46,20 @@ mkdir -p "$HOME/Documents/obsidian-vault" "$HOME/Documents/wallpapers"
 O binário publicado do [mailghost](https://github.com/Kelvin-Jesus/mailghost)
 também é instalado em `~/.local/bin` com versão e SHA-256 fixados.
 
+## Apps sem cask
+
+O install também baixa, com versão e SHA-256 fixados: Open Design, MotrixMac,
+oMLX, LearnHarness e INDEX 0. Kiri, OpenBot e os jogos continuam manuais.
+
+## Claude Code
+
+O pacote Stow `claude` (somente macOS) liga `~/.claude/settings.json`,
+`CLAUDE.md`, `RTK.md`, hooks e skills locais. O install também instala o
+[ai-memory](https://github.com/akitaonrails/ai-memory) usado pelos hooks,
+clona `claude-mods` em `~/Developer/personal-projects` e registra o MCP do
+ai-memory. Sessões, histórico, credenciais e skills sincronizadas do claude.ai
+ficam fora do repositório.
+
 ## Scripts pessoais em Rust
 
 O install compila e instala em `~/.local/bin`:
