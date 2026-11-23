@@ -49,7 +49,8 @@ também é instalado em `~/.local/bin` com versão e SHA-256 fixados.
 ## Apps sem cask
 
 O install também baixa, com versão e SHA-256 fixados: Open Design, MotrixMac,
-oMLX, LearnHarness e INDEX 0. Kiri, OpenBot e os jogos continuam manuais.
+oMLX, LearnHarness e INDEX 0. OpenBot e os jogos continuam manuais; o Kiri vem pelo Brewfile
+(tap `libracoder/kiri`).
 
 ## Claude Code
 

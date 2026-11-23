@@ -45,9 +45,11 @@ case "$platform" in
     fi
     run brew tap go-task/tap
     run brew tap can1357/tap
+    run brew tap libracoder/kiri
     if [[ "$DRY_RUN" -eq 1 ]] || brew help trust >/dev/null 2>&1; then
       run brew trust --cask go-task/tap/go-task
       run brew trust --formula can1357/tap/omp
+      run brew trust --cask libracoder/kiri/kiri
     fi
     run brew bundle install --verbose --file="$DOTFILES_ROOT/packages/macos/Brewfile"
     run_script "$DOTFILES_ROOT/scripts/macos/install-release-apps.sh" open-design motrixmac omlx learnharness index0
