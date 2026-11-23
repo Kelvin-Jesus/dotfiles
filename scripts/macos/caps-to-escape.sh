@@ -23,7 +23,7 @@ while [[ $# -gt 0 ]]; do
   shift
 done
 
-mapping='{"UserKeyMapping":[{"HIDKeyboardModifierMappingSrc":30064771129,"HIDKeyboardModifierMappingDst":30064771113}]}'
+mapping='{"UserKeyMapping":[{"HIDKeyboardModifierMappingSrc":30064771129,"HIDKeyboardModifierMappingDst":30064771113},{"HIDKeyboardModifierMappingSrc":30064771296,"HIDKeyboardModifierMappingDst":30064771299},{"HIDKeyboardModifierMappingSrc":30064771299,"HIDKeyboardModifierMappingDst":30064771296},{"HIDKeyboardModifierMappingSrc":30064771300,"HIDKeyboardModifierMappingDst":30064771303},{"HIDKeyboardModifierMappingSrc":30064771303,"HIDKeyboardModifierMappingDst":30064771300}]}'
 plist="$HOME/Library/LaunchAgents/com.dotfiles.caps-to-escape.plist"
 
 run /usr/bin/hidutil property --set "$mapping"
@@ -40,4 +40,4 @@ else
   die "LaunchAgent not found: $plist; apply the macos Stow package first"
 fi
 
-log "Caps Lock maps to Escape now and at login"
+log "Caps Lock maps to Escape and Control/Command are swapped, now and at login"

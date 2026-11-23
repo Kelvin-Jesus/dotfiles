@@ -9,7 +9,7 @@ require_macos
 
 run /usr/bin/defaults write NSGlobalDomain com.apple.trackpad.scaling -float 2.5
 run /usr/bin/defaults write NSGlobalDomain com.apple.mouse.tracking -float 2.5
-run /usr/bin/defaults write NSGlobalDomain com.apple.swipescrolldirection -bool true
+run /usr/bin/defaults write NSGlobalDomain com.apple.swipescrolldirection -bool false
 run /usr/bin/defaults write com.apple.AppleMultitouchTrackpad Clicking -bool true
 run /usr/bin/defaults write com.apple.AppleMultitouchTrackpad TrackpadThreeFingerDrag -bool true
 run /usr/bin/defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true
