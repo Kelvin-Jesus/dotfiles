@@ -79,8 +79,16 @@ run_script() {
   script="$1"
   shift
   [[ -x "$script" ]] || die "script is not executable: $script"
-  log "Running ${script#"$DOTFILES_ROOT"/}"
+  local label started
+  DOTFILES_STEP=$((${DOTFILES_STEP:-0} + 1))
+  label="Running ${script#"$DOTFILES_ROOT"/}"
+  if [[ -n "${DOTFILES_STEP_TOTAL:-}" ]]; then
+    label="[step ${DOTFILES_STEP}/${DOTFILES_STEP_TOTAL}] ${label}"
+  fi
+  log "$label"
+  started="$SECONDS"
   "$script" "$@"
+  log "finished ${script##*/} in $((SECONDS - started))s"
 }
 
 capture_to() {

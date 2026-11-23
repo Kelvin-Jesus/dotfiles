@@ -85,6 +85,17 @@ check_true_flac --dry-run --relative ~/Music
 pformat --dry-run ~/Downloads/archive.zip
 ```
 
+## Acompanhar o progresso
+
+O install anuncia cada etapa como `[step N/M]`, mostra o tempo gasto e usa
+`brew bundle --verbose`, então downloads longos aparecem no terminal. O log
+completo fica em `~/.local/state/dotfiles/logs/` e pode ser seguido em outra
+aba com:
+
+```sh
+tail -f ~/.local/state/dotfiles/logs/install-*.log
+```
+
 ## Comandos principais
 
 ```sh

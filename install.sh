@@ -85,6 +85,18 @@ export DOTFILES_ASSUME_YES="$ASSUME_YES"
 platform="$(detect_platform)"
 init_log "install"
 log "Installing dotfiles for $platform from $DOTFILES_ROOT"
+if [[ -n "$DOTFILES_LOG_FILE" ]]; then
+  log "Log file: $DOTFILES_LOG_FILE (follow it with: tail -f \"$DOTFILES_LOG_FILE\")"
+fi
+
+# Steps announced as "[step N/M]"; keep in sync with the run_script calls below.
+DOTFILES_STEP_TOTAL=4
+[[ "$SKIP_PACKAGES" -eq 0 ]] && DOTFILES_STEP_TOTAL=$((DOTFILES_STEP_TOTAL + 1))
+[[ "$SKIP_STOW" -eq 0 ]] && DOTFILES_STEP_TOTAL=$((DOTFILES_STEP_TOTAL + 1))
+[[ "$SKIP_RUNTIMES" -eq 0 ]] && DOTFILES_STEP_TOTAL=$((DOTFILES_STEP_TOTAL + 1))
+[[ "$platform" == "macos" ]] && DOTFILES_STEP_TOTAL=$((DOTFILES_STEP_TOTAL + 1))
+[[ "$SKIP_EDITORS" -eq 0 ]] && DOTFILES_STEP_TOTAL=$((DOTFILES_STEP_TOTAL + 1))
+[[ "$SKIP_SETTINGS" -eq 0 ]] && DOTFILES_STEP_TOTAL=$((DOTFILES_STEP_TOTAL + 1))
 
 if [[ "$PREFLIGHT_ONLY" -eq 1 ]]; then
   run_script "$DOTFILES_ROOT/scripts/stow-preflight.sh"

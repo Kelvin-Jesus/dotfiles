@@ -49,7 +49,7 @@ case "$platform" in
       run brew trust --cask go-task/tap/go-task
       run brew trust --formula can1357/tap/omp
     fi
-    run brew bundle install --file="$DOTFILES_ROOT/packages/macos/Brewfile"
+    run brew bundle install --verbose --file="$DOTFILES_ROOT/packages/macos/Brewfile"
     run_script "$DOTFILES_ROOT/scripts/macos/install-release-apps.sh" open-design motrixmac omlx learnharness index0
     if [[ "$WITH_OPTIONAL_APPS" -eq 1 ]]; then
       run_script "$DOTFILES_ROOT/scripts/macos/install-release-apps.sh" sidescreen spotiflac
