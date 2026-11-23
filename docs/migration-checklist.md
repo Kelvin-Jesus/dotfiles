@@ -101,3 +101,17 @@ Somente depois:
 
 O script aceita apenas GarageBand, iMovie, Pages, Numbers e Keynote em
 `/Applications`; nada em `/System/Applications` é removido.
+
+## Apps instalados manualmente
+
+Sem cask nem release verificável; instale à mão no Mac novo.
+
+- [ ] **Kiri** 0.2.1 (`dev.kiri.app`): depois de instalar, rode o setup dele
+      (adiciona `~/.kiri/bin`, já previsto no `env.zsh`).
+- [ ] **OpenBot** 0.72.0 (`app.openbot.desktop`): dados em `~/OpenBot`
+      (Agents, Backups, Shared); copie a pasta se quiser manter.
+- [ ] **Breath of the Wild** 1.6.0 (`org.macnativegames.botw`, macnativegames).
+- [ ] **Turing Complete** 0.1059 e **shapez 2** 1.0.3-rc3: baixe de onde
+      comprou; saves ficam em `~/Library/Application Support`.
+- [ ] **Planet Crafter** (bottle do CrossOver em `~/Applications/CrossOver`):
+      o CrossOver vem pelo Brewfile; reinstale o jogo dentro dele.
